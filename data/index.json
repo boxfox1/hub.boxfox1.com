@@ -1,0 +1,41 @@
+[
+  {
+    "id": "nom002-checklist",
+    "title": "Checklist NOM-002-STPS (editable)",
+    "desc": "Lista de verificación práctica para diagnóstico rápido y preparación de evidencias.",
+    "cat": "checklists",
+    "tier": "public",
+    "tags": ["NOM-002","Incendio","Auditoría"],
+    "updated": "2026-02-16",
+    "file": "/downloads/public/checklists/industrial-nom002-checklist-es-latest.xlsx",
+    "format": "XLSX",
+    "featured": true,
+    "isNew": true
+  },
+  {
+    "id": "formato-brigadas",
+    "title": "Formato de integración de brigadas",
+    "desc": "Formato base para nombramientos, roles, turnos y responsables por brigada.",
+    "cat": "formatos",
+    "tier": "public",
+    "tags": ["brigadas","Protección Civil","Organización"],
+    "updated": "2026-02-16",
+    "file": "/downloads/public/formatos/industrial-brigadas-integracion-es.docx",
+    "format": "DOCX",
+    "featured": true,
+    "isNew": false
+  },
+  {
+    "id": "programa-simulacros",
+    "title": "Programa anual de simulacros (plantilla)",
+    "desc": "Calendario, objetivos, responsables, métricas y cierre de hallazgos.",
+    "cat": "formatos",
+    "tier": "registro",
+    "tags": ["Simulacros","Plan anual","KPI"],
+    "updated": "2026-02-15",
+    "file": "/downloads/registro/formatos/industrial-programa-simulacros-es.xlsx",
+    "format": "XLSX",
+    "featured": true,
+    "isNew": true
+  }
+]
