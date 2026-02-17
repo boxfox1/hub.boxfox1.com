@@ -1,24 +1,18 @@
-<!doctype html>
-<html lang="es">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Acceso clientes | Hub Boxfox1</title>
-  <meta name="robots" content="noindex,follow" />
-</head>
-<body>
+// /assets/js/access-config.js
+(() => {
+  "use strict";
 
-<script>
-  window.ACCESS_LEVEL = "clientes";
-  window.ACCESS_REDIRECT = "/downloads/clientes/home.html";
-</script>
+  // Cambia estas contraseñas por las tuyas
+  window.ACCESS_PASSWORDS = {
+    registro: "boxfox1-registro",
+    clientes: "boxfox1-clientes",
+    academy: "boxfox1-academy",
+  };
 
-<script src="/assets/js/access-config.js"></script>
-<script src="/assets/js/access.js"></script>
+  // Claves de storage (para recordar sesión por nivel)
+  window.ACCESS_STORAGE_PREFIX = "boxfox1_access_";
 
-<p style="margin-top:10px;font-size:13px;opacity:.75">
-  Acceso exclusivo clientes Boxfox1. Próximamente validación automática por correo.
-</p>
-
-</body>
-</html>
+  // TTL opcional (en horas) para “recordar sesión”
+  // Si no quieres caducidad, pon 0.
+  window.ACCESS_TTL_HOURS = 0;
+})();
