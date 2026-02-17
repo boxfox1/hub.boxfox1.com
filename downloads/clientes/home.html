@@ -1,144 +1,38 @@
 <!doctype html>
 <html lang="es-MX">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Clientes | Descargas | Hub Boxfox1</title>
-    <meta name="robots" content="noindex,follow" />
-    <style>
-      :root {
-        color-scheme: dark;
-      }
-      body {
-        margin: 0;
-        font-family:
-          system-ui,
-          -apple-system,
-          Segoe UI,
-          Roboto,
-          Arial,
-          sans-serif;
-        background: #0b1220;
-        color: #e6edf6;
-      }
-      .container {
-        max-width: 1000px;
-        margin: 0 auto;
-        padding: 28px 18px;
-      }
-      .top {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 12px;
-        flex-wrap: wrap;
-      }
-      a {
-        color: #9bd1ff;
-        text-decoration: none;
-      }
-      a:hover {
-        text-decoration: underline;
-      }
-      .card {
-        margin-top: 16px;
-        background: #111827;
-        border: 1px solid #1f2a3f;
-        border-radius: 14px;
-        padding: 16px;
-      }
-      h1 {
-        font-size: 22px;
-        margin: 0;
-      }
-      .muted {
-        opacity: 0.75;
-      }
-      ul {
-        margin: 10px 0 0 0;
-        padding-left: 18px;
-      }
-      li {
-        margin: 10px 0;
-      }
-      .file {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 10px;
-        flex-wrap: wrap;
-      }
-      .btn {
-        display: inline-block;
-        padding: 8px 12px;
-        border-radius: 10px;
-        border: 1px solid #243043;
-        background: #0b1220;
-        color: #e6edf6;
-        text-decoration: none;
-      }
-      .btn:hover {
-        border-color: #2b3b5e;
-        text-decoration: none;
-      }
-      .pill {
-        display: inline-block;
-        font-size: 12px;
-        padding: 4px 10px;
-        border-radius: 999px;
-        border: 1px solid #243043;
-        background: #0b1220;
-        color: #cfe5ff;
-        margin-left: 8px;
-        opacity: 0.9;
-      }
-    </style>
-  </head>
-  <body>
-    <div class="container">
-      <div class="top">
-        <div>
-          <h1>Descargas clientes</h1>
-          <div class="muted">Hub Boxfox1 • nivel Clientes</div>
-        </div>
-        <div style="display: flex; gap: 10px; flex-wrap: wrap">
-          <a class="btn" href="/">← Volver al Hub</a>
-          <a class="btn" href="/downloads/clientes/">Cerrar (volver a login)</a>
-        </div>
-      </div>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Clientes | Descargas | Hub Boxfox1</title>
+<meta name="robots" content="noindex,follow">
+<link rel="stylesheet" href="/assets/css/main.css">
+</head>
 
-      <div class="card">
-        <div class="muted">Archivos disponibles (placeholder)</div>
-        <ul>
-          <li class="file">
-            <span
-              >Próximamente: Paquete SOP / Auditoría
-              <span class="pill">PDF</span></span
-            >
-            <a
-              class="btn"
-              href="#"
-              onclick="
-                alert('Aún no hay archivo aquí');
-                return false;
-              "
-              >Descargar</a
-            >
-          </li>
-        </ul>
-        <div class="muted" style="margin-top: 10px; font-size: 12px">
-          Nota: cuando subas archivos reales a /downloads/clientes/, aquí los
-          vas listando (manual).
-        </div>
-      </div>
+<body class="downloads-page">
 
-      <div class="card">
-        <div class="muted">Siguiente mejora</div>
-        <p class="muted" style="margin: 10px 0 0 0">
-          Este nivel se migrará a <strong>Cloudflare Access</strong> con lista
-          de correos autorizados por empresa (clientes).
-        </p>
-      </div>
-    </div>
-  </body>
+<main class="container" style="padding-top:40px">
+
+<h1>Descargas clientes</h1>
+<p class="muted">Hub Boxfox1 • nivel Clientes</p>
+
+<div class="card" style="margin-top:20px">
+<h3>Archivos disponibles</h3>
+
+<ul>
+<li>
+Paquete SOP / Auditoría (Próximamente)
+<a class="btn btn-sm" href="#" onclick="alert('Aún no disponible');return false;">Descargar</a>
+</li>
+</ul>
+
+</div>
+
+<div style="margin-top:20px">
+<a class="btn btn-sm btn-ghost" href="/">← Volver al Hub</a>
+<a class="btn btn-sm btn-ghost" href="/downloads/clientes/">Cerrar sesión</a>
+</div>
+
+</main>
+
+</body>
 </html>
