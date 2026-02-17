@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="es-MX">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Admin Hub | Boxfox1</title>
+    <style>
+      :root { color-scheme: dark; }
+      body {
+        margin: 0; font-family: Roboto, system-ui, -apple-system, Segoe UI, Arial, sans-serif;
+        background: #0b1220; color: #e8eefc;
+      }
+      .wrap { max-width: 900px; margin: 0 auto; padding: 24px; }
+      .card {
+        background: rgba(255,255,255,0.06);
+        border: 1px solid rgba(255,255,255,0.12);
+        border-radius: 16px;
+        padding: 18px;
+        box-shadow: 0 10px 30px rgba(0,0,0,.25);
+      }
+      h1 { margin: 0 0 6px; font-size: 22px; }
+      p { margin: 0 0 16px; opacity: .85; }
+      .grid { display: grid; grid-template-columns: 1fr; gap: 12px; }
+      @media (min-width: 820px) { .grid { grid-template-columns: 1fr 1fr; } }
+      .row {
+        display: grid; grid-template-columns: 130px 1fr;
+        gap: 10px; align-items: center;
+      }
+      label { font-size: 13px; opacity: .9; }
+      input[type="text"], input[type="password"] {
+        width: 100%; padding: 10px 12px; border-radius: 12px;
+        border: 1px solid rgba(255,255,255,0.15);
+        background: rgba(0,0,0,0.25); color: #e8eefc;
+        outline: none;
+      }
+      .toggle {
+        display: inline-flex; gap: 8px; align-items: center;
+        padding: 8px 10px; border-radius: 12px;
+        border: 1px solid rgba(255,255,255,0.15);
+        background: rgba(0,0,0,0.25);
+      }
+      .btns { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px; }
+      button {
+        cursor: pointer; border: 0; border-radius: 12px;
+        padding: 10px 12px; font-weight: 700;
+      }
+      .primary { background: #2f80ff; color: white; }
+      .danger { background: #ff4d4d; color: white; }
+      .ghost { background: rgba(255,255,255,0.10); color: #e8eefc; }
+      .note { margin-top: 12px; font-size: 12px; opacity: .8; line-height: 1.4; }
+      .divider { height: 1px; background: rgba(255,255,255,0.10); margin: 16px 0; }
+      .areaTitle { font-size: 14px; font-weight: 800; margin: 0 0 8px; }
+      code { background: rgba(255,255,255,0.08); padding: 2px 6px; border-radius: 8px; }
+    </style>
+  </head>
+
+  <body>
+    <div class="wrap">
+      <div class="card">
+        <h1>Panel Admin — Hub Boxfox1</h1>
+        <p>Control rápido de acceso (frontend). Cambios se guardan en este navegador (localStorage).</p>
+
+        <div class="divider"></div>
+
+        <div class="row" style="margin-bottom: 12px;">
+          <label>Protección global</label>
+          <div class="toggle">
+            <input id="globalEnabled" type="checkbox" />
+            <span>Activar protección</span>
+          </div>
+        </div>
+
+        <div class="grid">
+          <div class="card" style="padding:14px;">
+            <div class="areaTitle">/downloads/registro/</div>
+            <div class="row">
+              <label>Activo</label>
+              <div class="toggle">
+                <input id="regEnabled" type="checkbox" />
+                <span>Requiere contraseña</span>
+              </div>
+            </div>
+            <div class="row" style="margin-top:10px;">
+              <label>Contraseña</label>
+              <input id="regPass" type="password" autocomplete="new-password" />
+            </div>
+          </div>
+
+          <div class="card" style="padding:14px;">
+            <div class="areaTitle">/downloads/clientes/</div>
+            <div class="row">
+              <label>Activo</label>
+              <div class="toggle">
+                <input id="cliEnabled" type="checkbox" />
+                <span>Requiere contraseña</span>
+              </div>
+            </div>
+            <div class="row" style="margin-top:10px;">
+              <label>Contraseña</label>
+              <input id="cliPass" type="password" autocomplete="new-password" />
+            </div>
+          </div>
+
+          <div class="card" style="padding:14px;">
+            <div class="areaTitle">/downloads/academy/</div>
+            <div class="row">
+              <label>Activo</label>
+              <div class="toggle">
+                <input id="acaEnabled" type="checkbox" />
+                <span>Requiere contraseña</span>
+              </div>
+            </div>
+            <div class="row" style="margin-top:10px;">
+              <label>Contraseña</label>
+              <input id="acaPass" type="password" autocomplete="new-password" />
+            </div>
+          </div>
+
+          <div class="card" style="padding:14px;">
+            <div class="areaTitle">Acciones</div>
+            <div class="btns">
+              <button class="primary" id="saveBtn">Guardar</button>
+              <button class="ghost" id="logoutBtn">Cerrar sesiones</button>
+              <button class="danger" id="resetBtn">Reset a defaults</button>
+            </div>
+            <div class="note">
+              Tip: guarda este panel como marcador: <code>/admin/</code>.<br/>
+              “Cerrar sesiones” limpia las llaves de sesión y fuerza prompt de nuevo.
+            </div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="note">
+          <b>Importante:</b> esto no reemplaza seguridad real. Para clientes/academy lo correcto es <b>Cloudflare Access</b> (OTP por correo, allowlist, grupos).
+        </div>
+      </div>
+    </div>
+
+    <script src="/assets/js/access-config.js"></script>
+    <script>
+      const STORAGE_KEY = "bf1_access_config_v1";
+
+      const defaults = window.BF1_ACCESS_DEFAULTS;
+
+      function loadConfig() {
+        try {
+          const raw = localStorage.getItem(STORAGE_KEY);
+          if (!raw) return defaults;
+          const parsed = JSON.parse(raw);
+          return {
+            enabled: parsed.enabled ?? defaults.enabled,
+            areas: {
+              registro: { ...defaults.areas.registro, ...(parsed.areas?.registro || {}) },
+              clientes: { ...defaults.areas.clientes, ...(parsed.areas?.clientes || {}) },
+              academy: { ...defaults.areas.academy, ...(parsed.areas?.academy || {}) },
+            },
+          };
+        } catch {
+          return defaults;
+        }
+      }
+
+      function saveConfig(cfg) {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(cfg));
+      }
+
+      function fillUI(cfg) {
+        document.getElementById("globalEnabled").checked = !!cfg.enabled;
+
+        document.getElementById("regEnabled").checked = !!cfg.areas.registro.enabled;
+        document.getElementById("regPass").value = cfg.areas.registro.password || "";
+
+        document.getElementById("cliEnabled").checked = !!cfg.areas.clientes.enabled;
+        document.getElementById("cliPass").value = cfg.areas.clientes.password || "";
+
+        document.getElementById("acaEnabled").checked = !!cfg.areas.academy.enabled;
+        document.getElementById("acaPass").value = cfg.areas.academy.password || "";
+      }
+
+      function readUI() {
+        return {
+          enabled: document.getElementById("globalEnabled").checked,
+          areas: {
+            registro: {
+              enabled: document.getElementById("regEnabled").checked,
+              password: document.getElementById("regPass").value.trim(),
+            },
+            clientes: {
+              enabled: document.getElementById("cliEnabled").checked,
+              password: document.getElementById("cliPass").value.trim(),
+            },
+            academy: {
+              enabled: document.getElementById("acaEnabled").checked,
+              password: document.getElementById("acaPass").value.trim(),
+            },
+          },
+        };
+      }
+
+      function clearSessions() {
+        // solo borra en este navegador
+        Object.keys(sessionStorage).forEach((k) => {
+          if (k.startsWith("bf1_access_")) sessionStorage.removeItem(k);
+        });
+      }
+
+      // init
+      const cfg = loadConfig();
+      fillUI(cfg);
+
+      document.getElementById("saveBtn").addEventListener("click", () => {
+        const next = readUI();
+        saveConfig(next);
+        alert("Guardado. (Recuerda: aplica en este navegador.)");
+      });
+
+      document.getElementById("logoutBtn").addEventListener("click", () => {
+        clearSessions();
+        alert("Sesiones limpiadas.");
+      });
+
+      document.getElementById("resetBtn").addEventListener("click", () => {
+        localStorage.removeItem(STORAGE_KEY);
+        clearSessions();
+        fillUI(defaults);
+        alert("Reset aplicado a defaults.");
+      });
+    </script>
+  </body>
+</html>
