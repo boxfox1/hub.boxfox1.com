@@ -1,81 +1,86 @@
 <!doctype html>
 <html lang="es">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Recursos por registro | Hub Boxfox1</title>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Recursos por registro | Hub Boxfox1</title>
 
-  <style>
-    body{
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      background:#0b1220;
-      color:#e6edf6;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      height:100vh;
-      margin:0;
-    }
-    .box{
-      background:#111827;
-      padding:28px;
-      border-radius:12px;
-      width:320px;
-      text-align:center;
-      box-shadow:0 10px 40px rgba(0,0,0,.35);
-    }
-    input{
-      width:100%;
-      padding:10px;
-      border-radius:8px;
-      border:1px solid #243043;
-      background:#0b1220;
-      color:#fff;
-      margin-top:12px;
-    }
-    button{
-      margin-top:14px;
-      width:100%;
-      padding:10px;
-      border-radius:8px;
-      border:none;
-      background:#2563eb;
-      color:#fff;
-      cursor:pointer;
-      font-weight:600;
-    }
-    p.note{
-      margin-top:12px;
-      font-size:13px;
-      opacity:.75;
-    }
-  </style>
-</head>
+    <style>
+      body {
+        font-family:
+          system-ui,
+          -apple-system,
+          Segoe UI,
+          Roboto,
+          Arial,
+          sans-serif;
+        background: #0b1220;
+        color: #e6edf6;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        margin: 0;
+      }
+      .box {
+        background: #111827;
+        padding: 28px;
+        border-radius: 12px;
+        width: 320px;
+        text-align: center;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.35);
+      }
+      input {
+        width: 100%;
+        padding: 10px;
+        border-radius: 8px;
+        border: 1px solid #243043;
+        background: #0b1220;
+        color: #fff;
+        margin-top: 12px;
+      }
+      button {
+        margin-top: 14px;
+        width: 100%;
+        padding: 10px;
+        border-radius: 8px;
+        border: none;
+        background: #2563eb;
+        color: #fff;
+        cursor: pointer;
+        font-weight: 600;
+      }
+      p.note {
+        margin-top: 12px;
+        font-size: 13px;
+        opacity: 0.75;
+      }
+    </style>
+  </head>
 
-<body>
+  <body>
+    <div class="box">
+      <h3>Acceso por registro</h3>
+      <input id="pass" type="password" placeholder="Contraseña" />
+      <button onclick="check()">Entrar</button>
 
-  <div class="box">
-    <h3>Acceso por registro</h3>
-    <input id="pass" type="password" placeholder="Contraseña" />
-    <button onclick="check()">Entrar</button>
+      <p class="note">
+        Acceso por registro Boxfox1. Próximamente validación automática por
+        correo.
+      </p>
+    </div>
 
-    <p class="note">
-      Acceso por registro Boxfox1. Próximamente validación automática por correo.
-    </p>
-  </div>
+    <script>
+      function check() {
+        if (document.getElementById("pass").value === "boxfox1") {
+          location.href = "/downloads/registro/home.html";
+        } else {
+          alert("Contraseña incorrecta");
+        }
+      }
+    </script>
 
-<script>
-function check(){
-  if(document.getElementById("pass").value==="boxfox1"){
-    location.href="/downloads/registro/demo-registro-checklist.txt";
-  }else{
-    alert("Contraseña incorrecta");
-  }
-}
-</script>
-
-<script src="/assets/js/access-config.js"></script>
-<script src="/assets/js/access.js"></script>
-
-</body>
+    <script src="/assets/js/access-config.js"></script>
+    <script src="/assets/js/access.js"></script>
+  </body>
 </html>
