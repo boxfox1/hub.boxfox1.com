@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Descargas públicas | Hub Boxfox1</title>
+  <meta name="robots" content="noindex,follow" />
+  <style>
+    :root{color-scheme:dark}
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background:#0b1220;
+      color:#e6edf6;
+    }
+    .container{max-width:1000px;margin:0 auto;padding:28px 18px}
+    .top{
+      display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap
+    }
+    a{color:#9bd1ff;text-decoration:none}
+    a:hover{text-decoration:underline}
+    .card{
+      margin-top:16px;
+      background:#111827;
+      border:1px solid #1f2a3f;
+      border-radius:14px;
+      padding:16px;
+    }
+    h1{font-size:22px;margin:0}
+    .muted{opacity:.75}
+    ul{margin:10px 0 0 0;padding-left:18px}
+    li{margin:10px 0}
+    .pill{
+      display:inline-block;
+      font-size:12px;
+      padding:4px 10px;
+      border-radius:999px;
+      border:1px solid #243043;
+      background:#0b1220;
+      color:#cfe5ff;
+      margin-left:8px;
+      opacity:.9;
+    }
+    .file{
+      display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap
+    }
+    .btn{
+      display:inline-block;
+      padding:8px 12px;
+      border-radius:10px;
+      border:1px solid #243043;
+      background:#0b1220;
+      color:#e6edf6;
+      text-decoration:none;
+    }
+    .btn:hover{border-color:#2b3b5e;text-decoration:none}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="top">
+      <div>
+        <h1>Descargas públicas</h1>
+        <div class="muted">Hub Boxfox1 • recursos abiertos</div>
+      </div>
+      <div>
+        <a class="btn" href="/">← Volver al Hub</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="muted">Carpetas</div>
+      <ul>
+        <li><a href="./checklists/">/checklists/</a> <span class="pill">checklists</span></li>
+        <li><a href="./industrial/">/industrial/</a> <span class="pill">industrial</span></li>
+        <li><a href="./brigadas/">/brigadas/</a> <span class="pill">brigadas</span></li>
+        <li><a href="./formatos/">/formatos/</a> <span class="pill">formatos</span></li>
+        <li><a href="./academico/">/academico/</a> <span class="pill">académico</span></li>
+        <li><a href="./corporativo/">/corporativo/</a> <span class="pill">corporativo</span></li>
+        <li><a href="./procedimientos/">/procedimientos/</a> <span class="pill">procedimientos</span></li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <div class="muted">Archivos destacados (ejemplo)</div>
+      <ul>
+        <li class="file">
+          <span>Checklist NOM-002 (PDF)</span>
+          <a class="btn" href="./checklists/checklist-nom-002-prevencion-incendios-v1.pdf" download>Descargar</a>
+        </li>
+      </ul>
+      <div class="muted" style="margin-top:10px;font-size:12px">
+        Nota: esta página es un índice manual “sin backend”. Si un archivo no existe, solo actualiza el link.
+      </div>
+    </div>
+  </div>
+</body>
+</html>
