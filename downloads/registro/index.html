@@ -1,103 +1,18 @@
 <!doctype html>
-<html lang="es">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Recursos por registro | Hub Boxfox1</title>
-    <style>
-      body {
-        font-family:
-          system-ui,
-          -apple-system,
-          Segoe UI,
-          Roboto,
-          Arial,
-          sans-serif;
-        background: #0b1220;
-        color: #e6edf6;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        height: 100vh;
-        margin: 0;
-      }
-      .box {
-        background: #111827;
-        padding: 28px;
-        border-radius: 12px;
-        width: 320px;
-        text-align: center;
-        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.35);
-        border: 1px solid #1f2a3f;
-      }
-      input {
-        width: 100%;
-        padding: 10px;
-        border-radius: 8px;
-        border: 1px solid #243043;
-        background: #0b1220;
-        color: #fff;
-        margin-top: 12px;
-        outline: none;
-      }
-      input:focus {
-        border-color: #2b3b5e;
-      }
-      button {
-        margin-top: 14px;
-        width: 100%;
-        padding: 10px;
-        border-radius: 8px;
-        border: none;
-        background: #2563eb;
-        color: #fff;
-        cursor: pointer;
-        font-weight: 600;
-      }
-      button:hover {
-        filter: brightness(1.05);
-      }
-      p.note {
-        margin-top: 12px;
-        font-size: 13px;
-        opacity: 0.75;
-      }
-    </style>
-  </head>
+<html lang="es-MX">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Acceso registro | Hub Boxfox1</title>
+  <meta name="robots" content="noindex,follow" />
+</head>
+<body>
 
-  <body>
-    <div class="box">
-      <h3>Acceso por registro</h3>
-      <input id="pass" type="password" placeholder="Contraseña" />
-      <button id="btnEnter" type="button">Entrar</button>
+<script>
+  window.BOXFOX1_ACCESS_LEVEL = "registro";
+</script>
 
-      <p class="note">
-        Acceso por registro Boxfox1. Próximamente validación automática por
-        correo.
-      </p>
-    </div>
+<script src="/assets/js/access.js"></script>
 
-    <script>
-      (function () {
-        const PASS = "boxfox1"; // misma clave que ya usas
-        const input = document.getElementById("pass");
-        const btn = document.getElementById("btnEnter");
-
-        function go() {
-          const val = (input?.value || "").trim();
-          if (val === PASS) {
-            location.href = "/downloads/registro/home.html";
-            return;
-          }
-          alert("Contraseña incorrecta");
-          input?.focus();
-        }
-
-        btn?.addEventListener("click", go);
-        input?.addEventListener("keydown", (e) => {
-          if (e.key === "Enter") go();
-        });
-      })();
-    </script>
-  </body>
+</body>
 </html>
