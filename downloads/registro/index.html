@@ -4,7 +4,6 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Recursos por registro | Hub Boxfox1</title>
-
     <style>
       body {
         font-family:
@@ -29,6 +28,7 @@
         width: 320px;
         text-align: center;
         box-shadow: 0 10px 40px rgba(0, 0, 0, 0.35);
+        border: 1px solid #1f2a3f;
       }
       input {
         width: 100%;
@@ -38,6 +38,10 @@
         background: #0b1220;
         color: #fff;
         margin-top: 12px;
+        outline: none;
+      }
+      input:focus {
+        border-color: #2b3b5e;
       }
       button {
         margin-top: 14px;
@@ -49,6 +53,9 @@
         color: #fff;
         cursor: pointer;
         font-weight: 600;
+      }
+      button:hover {
+        filter: brightness(1.05);
       }
       p.note {
         margin-top: 12px;
@@ -62,7 +69,7 @@
     <div class="box">
       <h3>Acceso por registro</h3>
       <input id="pass" type="password" placeholder="Contraseña" />
-      <button onclick="check()">Entrar</button>
+      <button id="btnEnter" type="button">Entrar</button>
 
       <p class="note">
         Acceso por registro Boxfox1. Próximamente validación automática por
@@ -71,13 +78,26 @@
     </div>
 
     <script>
-      function check() {
-        if (document.getElementById("pass").value === "boxfox1") {
-          location.href = "/downloads/registro/home.html";
-        } else {
+      (function () {
+        const PASS = "boxfox1"; // misma clave que ya usas
+        const input = document.getElementById("pass");
+        const btn = document.getElementById("btnEnter");
+
+        function go() {
+          const val = (input?.value || "").trim();
+          if (val === PASS) {
+            location.href = "/downloads/registro/home.html";
+            return;
+          }
           alert("Contraseña incorrecta");
+          input?.focus();
         }
-      }
+
+        btn?.addEventListener("click", go);
+        input?.addEventListener("keydown", (e) => {
+          if (e.key === "Enter") go();
+        });
+      })();
     </script>
   </body>
 </html>
