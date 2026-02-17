@@ -1,0 +1,2 @@
+Demo registro OK
+Acceso protegido funcionando correctamente.

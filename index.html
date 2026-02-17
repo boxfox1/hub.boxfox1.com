@@ -40,17 +40,17 @@
     <header class="site-header" id="top">
       <nav class="nav">
         <div class="container nav-row">
-<a class="brand" href="/">
-  <img
-    class="brand-logo"
-    src="/assets/img/boxfox1.logo.white.webp"
-    alt="Boxfox1 Hub"
-    width="210"
-    height="48"
-    loading="eager"
-    decoding="async"
-  />
-</a>
+          <a class="brand" href="/">
+            <img
+              class="brand-logo"
+              src="/assets/img/boxfox1.logo.white.webp"
+              alt="Boxfox1 Hub"
+              width="210"
+              height="48"
+              loading="eager"
+              decoding="async"
+            />
+          </a>
 
           <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="navLinks">
             <span class="sr-only">Abrir menú</span>
@@ -61,6 +61,7 @@
             <a href="#categorias">Categorías</a>
             <a href="#destacados">Destacados</a>
             <a href="#nuevos">Nuevos</a>
+            <a href="#accesos-rapidos">Descargas</a>
             <a href="#como-funciona">Accesos</a>
             <a class="btn btn-sm btn-ghost" href="#contacto">Contacto</a>
           </div>
@@ -83,6 +84,9 @@
             <div class="hero-cta">
               <a class="btn" href="#destacados">Ver recursos destacados</a>
               <a class="btn btn-ghost" href="#como-funciona">Cómo funcionan los accesos</a>
+              <!-- NUEVO: accesos directos -->
+              <a class="btn btn-ghost" href="/downloads/public/">Ir a descargas públicas</a>
+              <a class="btn btn-ghost" href="#accesos-rapidos">Ver todos los niveles</a>
             </div>
 
             <div class="trust-row">
@@ -149,6 +153,46 @@
                 Tip: en Cloudflare Access puedes proteger rutas como <code>/downloads/clientes/*</code>.
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- NUEVO: ACCESOS RAPIDOS -->
+      <section class="section" id="accesos-rapidos">
+        <div class="container">
+          <div class="section-head">
+            <h2>Centro de descargas</h2>
+            <p class="muted">Accede por nivel. (Temporalmente con contraseña frontend; luego Cloudflare Access).</p>
+          </div>
+
+          <div class="grid cards-4">
+            <a class="card card-link" href="/downloads/public/">
+              <div class="badge badge-public">Público</div>
+              <h3 class="h5">Descargas abiertas</h3>
+              <p class="muted">Guías base y recursos intro para SEO y atracción.</p>
+              <div class="card-meta">Abrir carpeta</div>
+            </a>
+
+            <a class="card card-link" href="/downloads/registro/">
+              <div class="badge badge-registro">Registro</div>
+              <h3 class="h5">Recursos por registro</h3>
+              <p class="muted">Plantillas avanzadas y material descargable premium.</p>
+              <div class="card-meta">Abrir carpeta</div>
+            </a>
+
+            <a class="card card-link" href="/downloads/clientes/">
+              <div class="badge badge-clientes">Clientes</div>
+              <h3 class="h5">Exclusivo clientes</h3>
+              <p class="muted">SOP, auditorías, paquetes y material de implementación.</p>
+              <div class="card-meta">Abrir carpeta</div>
+            </a>
+
+            <a class="card card-link" href="/downloads/academy/">
+              <div class="badge badge-academy">Academy</div>
+              <h3 class="h5">Material alumnos</h3>
+              <p class="muted">Manuales, evaluaciones y recursos por curso.</p>
+              <div class="card-meta">Abrir carpeta</div>
+            </a>
           </div>
         </div>
       </section>

@@ -1,20 +1,22 @@
 // /assets/js/main.js
 (() => {
+  "use strict";
+
   const $ = (sel, root = document) => root.querySelector(sel);
   const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
 
   // =========================================================
   // Boxfox1 Contact (para *.boxfox1.com)
   // =========================================================
-  const WHATS = "https://wa.me/524444989198";
-  const MAIL = "info@boxfox1.com";
   const ORIGIN = "hub.boxfox1.com";
+  const WHATS_BASE = "https://wa.me/524444989198";
+  const MAIL = "info@boxfox1.com";
 
-  // Plan B: catálogo en JSON
+  // Catálogo (Plan B): JSON
   const DATA_URL = "/assets/data/index.json?v=1";
 
   // Prefilled CTA messages
-  const whatsText =
+  const baseWhatsText =
     `Hola Boxfox1, vengo de ${ORIGIN}. ` +
     `Me interesa acceso a recursos/plantillas y un diagnóstico rápido. ¿Me apoyas?`;
 
@@ -79,13 +81,18 @@
     });
   };
 
+  const buildWhatsUrl = (text) =>
+    `${WHATS_BASE}?text=${encodeURIComponent(text)}`;
+
   const resourceCard = (r) => {
     const tags = (r.tags || [])
       .slice(0, 4)
       .map((t) => `<span class="tag">${escapeHtml(t)}</span>`)
       .join("");
+
     const updated = safeDate(r.updated);
     const badge = `<span class="badge ${tierBadgeClass(r.tier)}">${tierLabel(r.tier)}</span>`;
+
     const fmt = r.format
       ? `<span class="tag">${escapeHtml(r.format)}</span>`
       : "";
@@ -93,6 +100,15 @@
 
     const dlNote =
       r.tier === "public" ? "Descarga directa" : "Puede requerir acceso";
+
+    // WhatsApp directo con datos del recurso
+    const askText =
+      `Hola Boxfox1, vengo de ${ORIGIN}. ` +
+      `Necesito acceso/soporte para: "${r.title}". ` +
+      `Nivel: ${tierLabel(r.tier)}. ` +
+      `Link: ${r.file}`;
+
+    const askUrl = buildWhatsUrl(askText);
 
     return `
       <article class="card">
@@ -112,7 +128,9 @@
 
         <div class="resource-actions">
           <a class="btn-line" href="${escapeHtml(r.file)}" download>Descargar</a>
-          <a class="btn-line" href="#contacto" data-ask="${escapeHtml(r.title)}">Pedir acceso</a>
+          <a class="btn-line" href="${escapeHtml(askUrl)}" target="_blank" rel="noopener">
+            Pedir acceso
+          </a>
         </div>
       </article>
     `;
@@ -120,19 +138,6 @@
 
   const renderInto = (el, list) => {
     el.innerHTML = list.map(resourceCard).join("");
-
-    // "Pedir acceso" -> prefill WhatsApp con el recurso
-    $$("[data-ask]", el).forEach((btn) => {
-      btn.addEventListener("click", () => {
-        const what = btn.getAttribute("data-ask") || "un recurso";
-        const text =
-          `Hola Boxfox1, vengo de ${ORIGIN}. ` +
-          `Necesito acceso/soporte para: "${what}". ¿Me apoyas?`;
-        const url = `${WHATS}?text=${encodeURIComponent(text)}`;
-        const w = $("#btnWhats");
-        if (w) w.setAttribute("href", url);
-      });
-    });
   };
 
   // =========================================================
@@ -149,9 +154,11 @@
     const hay = normalize(
       [r.title, r.desc, r.cat, r.tier, ...(r.tags || [])].join(" "),
     );
+
     const okQ = !nq || hay.includes(nq);
     const okC = cat === "all" || r.cat === cat;
     const okT = tier === "all" || r.tier === tier;
+
     return okQ && okC && okT;
   };
 
@@ -173,7 +180,7 @@
   };
 
   // =========================================================
-  // NAV + fixed header + body-scroll
+  // NAV + mobile menu + scrolled class (solo visual)
   // =========================================================
   const initNav = () => {
     const toggle = $(".nav-toggle");
@@ -193,14 +200,15 @@
       });
     }
 
-    // scrolled state: como el scroll vive en body, escuchamos body
     const nav = document.querySelector(".nav");
     const scroller = document.body;
 
     const onScroll = () => {
       if (!nav) return;
+      // Nota: esto NO debe cambiar alturas en CSS; solo sombras/blur
       nav.classList.toggle("is-scrolled", scroller.scrollTop > 8);
     };
+
     scroller.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
 
@@ -244,34 +252,29 @@
   };
 
   // =========================================================
-  // Buttons
+  // Buttons (CTAs)
   // =========================================================
   const initButtons = () => {
     const w = $("#btnWhats");
     const m = $("#btnMail");
-    if (w) w.href = `${WHATS}?text=${encodeURIComponent(whatsText)}`;
+
+    if (w) w.href = buildWhatsUrl(baseWhatsText);
     if (m)
       m.href = `mailto:${MAIL}?subject=${encodeURIComponent(mailSubject)}&body=${mailBody}`;
 
     $("#btnApply")?.addEventListener("click", applyFilters);
 
     $("#btnClear")?.addEventListener("click", () => {
-      const q = $("#q");
-      const cat = $("#cat");
-      const tier = $("#tier");
-      if (q) q.value = "";
-      if (cat) cat.value = "all";
-      if (tier) tier.value = "all";
+      if ($("#q")) $("#q").value = "";
+      if ($("#cat")) $("#cat").value = "all";
+      if ($("#tier")) $("#tier").value = "all";
       applyFilters();
     });
 
     $("#btnShowAll")?.addEventListener("click", () => {
-      const q = $("#q");
-      const cat = $("#cat");
-      const tier = $("#tier");
-      if (q) q.value = "";
-      if (cat) cat.value = "all";
-      if (tier) tier.value = "all";
+      if ($("#q")) $("#q").value = "";
+      if ($("#cat")) $("#cat").value = "all";
+      if ($("#tier")) $("#tier").value = "all";
       applyFilters();
       $("#lista")?.scrollIntoView({ behavior: "smooth", block: "start" });
     });
@@ -315,7 +318,9 @@
         <div class="resource-title">No se pudo cargar el catálogo</div>
         <p class="resource-desc">${escapeHtml(msg)}</p>
         <div class="resource-actions">
-          <a class="btn-line" href="#contacto">Contactar</a>
+          <a class="btn-line" href="${escapeHtml(buildWhatsUrl(baseWhatsText))}" target="_blank" rel="noopener">
+            Contactar por WhatsApp
+          </a>
         </div>
       </article>
     `;
@@ -333,9 +338,7 @@
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       const data = await res.json();
 
-      if (!Array.isArray(data)) {
-        throw new Error("El JSON no es un arreglo");
-      }
+      if (!Array.isArray(data)) throw new Error("El JSON no es un arreglo");
 
       resources = data
         .filter(Boolean)
