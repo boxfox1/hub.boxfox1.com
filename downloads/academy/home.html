@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="es-MX">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Academy | Descargas | Hub Boxfox1</title>
+    <meta name="robots" content="noindex,follow" />
+
+    <style>
+      :root {
+        color-scheme: dark;
+      }
+
+      body {
+        margin: 0;
+        font-family:
+          system-ui,
+          -apple-system,
+          Segoe UI,
+          Roboto,
+          Arial,
+          sans-serif;
+        background: #0b1220;
+        color: #e6edf6;
+      }
+
+      .container {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 28px 18px;
+      }
+
+      .top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+
+      h1 {
+        margin: 0;
+        font-size: 22px;
+      }
+      .muted {
+        opacity: 0.75;
+      }
+
+      .card {
+        margin-top: 16px;
+        background: #111827;
+        border: 1px solid #1f2a3f;
+        border-radius: 14px;
+        padding: 16px;
+      }
+
+      ul {
+        margin: 10px 0 0 0;
+        padding-left: 18px;
+      }
+
+      .file {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .btn {
+        display: inline-block;
+        padding: 8px 12px;
+        border-radius: 10px;
+        border: 1px solid #243043;
+        background: #0b1220;
+        color: #e6edf6;
+        text-decoration: none;
+        cursor: pointer;
+      }
+
+      .btn:hover {
+        border-color: #2b3b5e;
+      }
+
+      .pill {
+        font-size: 12px;
+        padding: 4px 10px;
+        border-radius: 999px;
+        border: 1px solid #243043;
+        margin-left: 8px;
+      }
+
+      .row {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="top">
+        <div>
+          <h1>Material Academy</h1>
+          <div class="muted">Hub Boxfox1 • nivel Academy</div>
+        </div>
+
+        <div class="row">
+          <a class="btn" href="/">← Volver al Hub</a>
+          <button class="btn" id="btnLogout" type="button">
+            Cerrar sesión
+          </button>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="muted">Archivos disponibles</div>
+
+        <ul>
+          <li class="file">
+            <span>
+              Demo academy (Curso)
+              <span class="pill">TXT</span>
+            </span>
+
+            <a
+              class="btn"
+              href="/downloads/academy/demo-academy-curso.txt"
+              download
+              >Descargar</a
+            >
+          </li>
+        </ul>
+
+        <div class="muted" style="margin-top: 10px; font-size: 12px">
+          Aquí podrás listar los materiales por curso (manuales, evaluaciones,
+          presentaciones).
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="muted">Siguiente mejora</div>
+        <p class="muted" style="margin: 10px 0 0 0">
+          Este nivel se migrará a <strong>Cloudflare Access</strong> con
+          validación automática por correo para alumnos.
+        </p>
+      </div>
+    </div>
+
+    <script>
+      (function () {
+        const prefix = window.ACCESS_STORAGE_PREFIX || "boxfox1_access_";
+        const key = prefix + "academy";
+
+        document.getElementById("btnLogout").addEventListener("click", () => {
+          localStorage.removeItem(key);
+          sessionStorage.removeItem(key);
+          window.location.href = "/downloads/academy/";
+        });
+      })();
+    </script>
+  </body>
+</html>
