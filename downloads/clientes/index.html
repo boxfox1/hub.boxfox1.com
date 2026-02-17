@@ -1,49 +1,18 @@
 <!doctype html>
 <html lang="es-MX">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Acceso clientes | Hub Boxfox1</title>
-    <meta name="robots" content="noindex,follow" />
-    <style>
-      :root {
-        color-scheme: dark;
-      }
-      body {
-        margin: 0;
-        min-height: 100vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-family:
-          system-ui,
-          -apple-system,
-          Segoe UI,
-          Roboto,
-          Arial,
-          sans-serif;
-        background: #0b1220;
-        color: #e6edf6;
-      }
-      .msg {
-        opacity: 0.8;
-        font-size: 13px;
-        text-align: center;
-        padding: 20px;
-      }
-    </style>
-  </head>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Acceso clientes | Hub Boxfox1</title>
+  <meta name="robots" content="noindex,follow" />
+</head>
+<body>
 
-  <body>
-    <div class="msg">Acceso exclusivo clientes Boxfox1. Verificando…</div>
+<script>
+  window.BOXFOX1_ACCESS_LEVEL = "clientes";
+</script>
 
-    <!-- Config nivel + redirect fijo (evita páginas en blanco) -->
-    <script>
-      window.ACCESS_LEVEL = "clientes";
-      window.ACCESS_REDIRECT = "/downloads/clientes/home.html";
-    </script>
+<script src="/assets/js/access.js"></script>
 
-    <script src="/assets/js/access-config.js?v=2"></script>
-    <script src="/assets/js/access.js?v=2"></script>
-  </body>
+</body>
 </html>
