@@ -46,8 +46,21 @@
     "tier": "public",
     "tags": ["nom-002", "incendios", "checklist", "stps"],
     "updated": "2026-02-16",
-    "file": "/downloads/public/checklist-nom-002-prevencion-incendios-v1.pdf",
+    "file": "/downloads/public/checklists/checklist-nom-002-prevencion-incendios-v1.pdf",
     "format": "PDF",
+    "featured": true,
+    "isNew": true
+  },
+  {
+    "id": "checklist-nom-002-basico",
+    "title": "Checklist NOM-002 básico",
+    "desc": "Checklist inicial de verificación rápida para prevención y combate de incendios.",
+    "cat": "checklists",
+    "tier": "public",
+    "tags": ["nom-002", "incendios", "checklist", "stps"],
+    "updated": "2026-02-16",
+    "file": "/downloads/public/checklists/checklist-nom-002-basico.txt",
+    "format": "TXT",
     "featured": true,
     "isNew": true
   }
