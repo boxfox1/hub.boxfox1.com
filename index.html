@@ -13,7 +13,10 @@
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="Hub Boxfox1 | Centro de Recursos Técnicos" />
+    <meta
+      property="og:title"
+      content="Hub Boxfox1 | Centro de Recursos Técnicos"
+    />
     <meta
       property="og:description"
       content="Recursos descargables para industria: NOM, brigadas, checklists, procedimientos, material académico y herramientas."
@@ -30,18 +33,25 @@
     />
 
     <link rel="stylesheet" href="./assets/css/main.css" />
-    <link rel="icon" href="data:," />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-F84RR7KNGX"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-F84RR7KNGX"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
 
-  gtag('config', 'G-F84RR7KNGX');
-</script>
-
+      gtag("config", "G-F84RR7KNGX");
+    </script>
   </head>
 
   <body>
@@ -63,7 +73,12 @@
             />
           </a>
 
-          <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="navLinks">
+          <button
+            class="nav-toggle"
+            type="button"
+            aria-expanded="false"
+            aria-controls="navLinks"
+          >
             <span class="sr-only">Abrir menú</span>
             <span class="burger" aria-hidden="true"></span>
           </button>
@@ -88,27 +103,42 @@
             <p class="kicker">Centro de recursos técnicos</p>
             <h1>Hub Boxfox1</h1>
             <p class="lead">
-              Plantillas, formatos, checklists y herramientas industriales listas para implementar.
-              Recursos públicos, con registro y exclusivos para clientes/alumnos.
+              Plantillas, formatos, checklists y herramientas industriales
+              listas para implementar. Recursos públicos, con registro y
+              exclusivos para clientes/alumnos.
             </p>
 
             <div class="hero-cta">
               <a class="btn" href="#destacados">Ver recursos destacados</a>
-              <a class="btn btn-ghost" href="#como-funciona">Cómo funcionan los accesos</a>
+              <a class="btn btn-ghost" href="#como-funciona"
+                >Cómo funcionan los accesos</a
+              >
               <!-- NUEVO: accesos directos -->
-              <a class="btn btn-ghost" href="/downloads/public/">Ir a descargas públicas</a>
-              <a class="btn btn-ghost" href="#accesos-rapidos">Ver todos los niveles</a>
+              <a class="btn btn-ghost" href="/downloads/public/"
+                >Ir a descargas públicas</a
+              >
+              <a class="btn btn-ghost" href="#accesos-rapidos"
+                >Ver todos los niveles</a
+              >
             </div>
 
             <div class="trust-row">
-              <div class="trust-chip" title="Estructura por niveles: público / registro / clientes / academy">
+              <div
+                class="trust-chip"
+                title="Estructura por niveles: público / registro / clientes / academy"
+              >
                 <span class="dot dot-public" aria-hidden="true"></span> Público
               </div>
-              <div class="trust-chip" title="Recursos con registro (lead magnet)">
-                <span class="dot dot-registro" aria-hidden="true"></span> Registro
+              <div
+                class="trust-chip"
+                title="Recursos con registro (lead magnet)"
+              >
+                <span class="dot dot-registro" aria-hidden="true"></span>
+                Registro
               </div>
               <div class="trust-chip" title="Recursos exclusivos para clientes">
-                <span class="dot dot-clientes" aria-hidden="true"></span> Clientes
+                <span class="dot dot-clientes" aria-hidden="true"></span>
+                Clientes
               </div>
               <div class="trust-chip" title="Material de alumnos / academy">
                 <span class="dot dot-academy" aria-hidden="true"></span> Academy
@@ -125,7 +155,12 @@
             <div class="filters">
               <label class="field">
                 <span class="field-label">Buscar</span>
-                <input id="q" type="search" placeholder="Ej. NOM-002, brigadas, extintores…" autocomplete="off" />
+                <input
+                  id="q"
+                  type="search"
+                  placeholder="Ej. NOM-002, brigadas, extintores…"
+                  autocomplete="off"
+                />
               </label>
 
               <div class="field-row">
@@ -156,12 +191,21 @@
               </div>
 
               <div class="field-row">
-                <button class="btn btn-sm" id="btnApply" type="button">Aplicar</button>
-                <button class="btn btn-sm btn-ghost" id="btnClear" type="button">Limpiar</button>
+                <button class="btn btn-sm" id="btnApply" type="button">
+                  Aplicar
+                </button>
+                <button
+                  class="btn btn-sm btn-ghost"
+                  id="btnClear"
+                  type="button"
+                >
+                  Limpiar
+                </button>
               </div>
 
               <div class="mini-note">
-                Tip: en Cloudflare Access puedes proteger rutas como <code>/downloads/clientes/*</code>.
+                Tip: en Cloudflare Access puedes proteger rutas como
+                <code>/downloads/clientes/*</code>.
               </div>
             </div>
           </div>
@@ -173,28 +217,37 @@
         <div class="container">
           <div class="section-head">
             <h2>Centro de descargas</h2>
-            <p class="muted">Accede por nivel. (Temporalmente con contraseña frontend; luego Cloudflare Access).</p>
+            <p class="muted">
+              Accede por nivel. (Temporalmente con contraseña frontend; luego
+              Cloudflare Access).
+            </p>
           </div>
 
           <div class="grid cards-4">
             <a class="card card-link" href="/downloads/public/">
               <div class="badge badge-public">Público</div>
               <h3 class="h5">Descargas abiertas</h3>
-              <p class="muted">Guías base y recursos intro para SEO y atracción.</p>
+              <p class="muted">
+                Guías base y recursos intro para SEO y atracción.
+              </p>
               <div class="card-meta">Abrir carpeta</div>
             </a>
 
             <a class="card card-link" href="/downloads/registro/">
               <div class="badge badge-registro">Registro</div>
               <h3 class="h5">Recursos por registro</h3>
-              <p class="muted">Plantillas avanzadas y material descargable premium.</p>
+              <p class="muted">
+                Plantillas avanzadas y material descargable premium.
+              </p>
               <div class="card-meta">Abrir carpeta</div>
             </a>
 
             <a class="card card-link" href="/downloads/clientes/">
               <div class="badge badge-clientes">Clientes</div>
               <h3 class="h5">Exclusivo clientes</h3>
-              <p class="muted">SOP, auditorías, paquetes y material de implementación.</p>
+              <p class="muted">
+                SOP, auditorías, paquetes y material de implementación.
+              </p>
               <div class="card-meta">Abrir carpeta</div>
             </a>
 
@@ -213,49 +266,64 @@
         <div class="container">
           <div class="section-head">
             <h2>Categorías</h2>
-            <p class="muted">Accesos rápidos a familias de recursos. Mantén el Hub escalable por carpetas.</p>
+            <p class="muted">
+              Accesos rápidos a familias de recursos. Mantén el Hub escalable
+              por carpetas.
+            </p>
           </div>
 
           <div class="grid cards-6">
             <a class="card card-link" href="#lista" data-jump-cat="industrial">
               <div class="card-icon" aria-hidden="true">🏭</div>
               <div class="card-title">Industrial</div>
-              <div class="card-text">NOM, seguridad, operación y cumplimiento.</div>
+              <div class="card-text">
+                NOM, seguridad, operación y cumplimiento.
+              </div>
               <div class="card-meta">Explorar</div>
             </a>
 
             <a class="card card-link" href="#lista" data-jump-cat="brigadas">
               <div class="card-icon" aria-hidden="true">🧯</div>
               <div class="card-title">Brigadas</div>
-              <div class="card-text">Incendio, evacuación, rescate, primeros auxilios.</div>
+              <div class="card-text">
+                Incendio, evacuación, rescate, primeros auxilios.
+              </div>
               <div class="card-meta">Explorar</div>
             </a>
 
             <a class="card card-link" href="#lista" data-jump-cat="checklists">
               <div class="card-icon" aria-hidden="true">✅</div>
               <div class="card-title">Checklists</div>
-              <div class="card-text">Listas editables para auditoría rápida.</div>
+              <div class="card-text">
+                Listas editables para auditoría rápida.
+              </div>
               <div class="card-meta">Explorar</div>
             </a>
 
             <a class="card card-link" href="#lista" data-jump-cat="formatos">
               <div class="card-icon" aria-hidden="true">🗂️</div>
               <div class="card-title">Formatos</div>
-              <div class="card-text">Bitácoras, registros, programas y formatos.</div>
+              <div class="card-text">
+                Bitácoras, registros, programas y formatos.
+              </div>
               <div class="card-meta">Explorar</div>
             </a>
 
             <a class="card card-link" href="#lista" data-jump-cat="academico">
               <div class="card-icon" aria-hidden="true">🎓</div>
               <div class="card-title">Académico</div>
-              <div class="card-text">Guías, manuales, presentaciones, evaluaciones.</div>
+              <div class="card-text">
+                Guías, manuales, presentaciones, evaluaciones.
+              </div>
               <div class="card-meta">Explorar</div>
             </a>
 
             <a class="card card-link" href="#lista" data-jump-cat="corporativo">
               <div class="card-icon" aria-hidden="true">📌</div>
               <div class="card-title">Corporativo</div>
-              <div class="card-text">Catálogos, fichas, presentaciones institucionales.</div>
+              <div class="card-text">
+                Catálogos, fichas, presentaciones institucionales.
+              </div>
               <div class="card-meta">Explorar</div>
             </a>
           </div>
@@ -268,7 +336,8 @@
           <div class="section-head">
             <h2>Recursos destacados</h2>
             <p class="muted">
-              Selección inicial de alto valor para arranque. Puedes moverlos entre niveles (público/registro/clientes/academy).
+              Selección inicial de alto valor para arranque. Puedes moverlos
+              entre niveles (público/registro/clientes/academy).
             </p>
           </div>
 
@@ -281,7 +350,10 @@
         <div class="container">
           <div class="section-head">
             <h2>Nuevos y actualizados</h2>
-            <p class="muted">Esto alimenta SEO continuo. Publica y actualiza por versiones (v1, v2…).</p>
+            <p class="muted">
+              Esto alimenta SEO continuo. Publica y actualiza por versiones (v1,
+              v2…).
+            </p>
           </div>
 
           <div class="grid cards-3" id="newest"></div>
@@ -294,7 +366,8 @@
           <div class="section-head">
             <h2>Biblioteca</h2>
             <p class="muted">
-              Búsqueda y filtrado. Estructura sugerida: <code>/downloads/public</code>, <code>/downloads/registro</code>,
+              Búsqueda y filtrado. Estructura sugerida:
+              <code>/downloads/public</code>, <code>/downloads/registro</code>,
               <code>/downloads/clientes</code>, <code>/downloads/academy</code>.
             </p>
           </div>
@@ -303,14 +376,24 @@
             <div class="result-meta">
               <span id="resultCount">0</span> recursos
               <span class="sep">•</span>
-              <button class="linklike" type="button" id="btnShowAll">Mostrar todo</button>
+              <button class="linklike" type="button" id="btnShowAll">
+                Mostrar todo
+              </button>
             </div>
 
             <div class="pill-row" aria-label="Filtros rápidos">
-              <button class="pill" data-pill-tier="public" type="button">Público</button>
-              <button class="pill" data-pill-tier="registro" type="button">Registro</button>
-              <button class="pill" data-pill-tier="clientes" type="button">Clientes</button>
-              <button class="pill" data-pill-tier="academy" type="button">Academy</button>
+              <button class="pill" data-pill-tier="public" type="button">
+                Público
+              </button>
+              <button class="pill" data-pill-tier="registro" type="button">
+                Registro
+              </button>
+              <button class="pill" data-pill-tier="clientes" type="button">
+                Clientes
+              </button>
+              <button class="pill" data-pill-tier="academy" type="button">
+                Academy
+              </button>
             </div>
           </div>
 
@@ -323,14 +406,20 @@
         <div class="container">
           <div class="section-head">
             <h2>Cómo funcionan los accesos</h2>
-            <p class="muted">Modelo recomendado: público + registro + clientes + academy, sin backend.</p>
+            <p class="muted">
+              Modelo recomendado: público + registro + clientes + academy, sin
+              backend.
+            </p>
           </div>
 
           <div class="grid cards-4">
             <div class="card">
               <div class="badge badge-public">Público</div>
               <h3 class="h5">Recursos abiertos</h3>
-              <p class="muted">SEO + autoridad. Checklists básicos, guías intro, formatos simples.</p>
+              <p class="muted">
+                SEO + autoridad. Checklists básicos, guías intro, formatos
+                simples.
+              </p>
               <ul class="list">
                 <li>Descarga directa</li>
                 <li>Ideal para atracción</li>
@@ -340,7 +429,10 @@
             <div class="card">
               <div class="badge badge-registro">Registro</div>
               <h3 class="h5">Lead magnet</h3>
-              <p class="muted">Protege ruta con Cloudflare Access (OTP email). Captura prospectos.</p>
+              <p class="muted">
+                Protege ruta con Cloudflare Access (OTP email). Captura
+                prospectos.
+              </p>
               <ul class="list">
                 <li>Programas y plantillas avanzadas</li>
                 <li>Base de leads</li>
@@ -350,7 +442,10 @@
             <div class="card">
               <div class="badge badge-clientes">Clientes</div>
               <h3 class="h5">Exclusivo</h3>
-              <p class="muted">Solo para empresas con proyecto. Metodología, auditoría, SOP completos.</p>
+              <p class="muted">
+                Solo para empresas con proyecto. Metodología, auditoría, SOP
+                completos.
+              </p>
               <ul class="list">
                 <li>Acceso por lista de emails</li>
                 <li>Material de implementación</li>
@@ -360,7 +455,10 @@
             <div class="card">
               <div class="badge badge-academy">Academy</div>
               <h3 class="h5">Alumnos</h3>
-              <p class="muted">Material didáctico, manuales, evaluaciones. Ideal para capacitacion.boxfox1.com.</p>
+              <p class="muted">
+                Material didáctico, manuales, evaluaciones. Ideal para
+                capacitacion.boxfox1.com.
+              </p>
               <ul class="list">
                 <li>Acceso por cohortes</li>
                 <li>Organizado por cursos</li>
@@ -376,15 +474,21 @@
           <div class="cta-copy">
             <h2>¿Necesitas implementación completa en tu empresa?</h2>
             <p>
-              Podemos ayudarte con diagnóstico, capacitación y despliegue de cumplimiento (NOM, brigadas, seguridad operativa).
-              Este mensaje sale desde <strong>hub.boxfox1.com</strong>.
+              Podemos ayudarte con diagnóstico, capacitación y despliegue de
+              cumplimiento (NOM, brigadas, seguridad operativa). Este mensaje
+              sale desde <strong>hub.boxfox1.com</strong>.
             </p>
           </div>
 
           <div class="cta-actions">
             <a class="btn" id="btnWhats" href="#" rel="noopener">WhatsApp</a>
             <a class="btn btn-ghost" id="btnMail" href="#">Correo</a>
-            <a class="btn btn-ghost" href="https://www.linkedin.com/company/boxfox1" target="_blank" rel="noopener">
+            <a
+              class="btn btn-ghost"
+              href="https://www.linkedin.com/company/boxfox1"
+              target="_blank"
+              rel="noopener"
+            >
               LinkedIn
             </a>
           </div>
@@ -397,9 +501,16 @@
       <div class="container footer-row">
         <div class="footer-left">Corporativo Boxfox1 © 2026</div>
         <div class="footer-right">
-          <a href="https://blog.boxfox1.com" target="_blank" rel="noopener">Blog</a>
+          <a href="https://blog.boxfox1.com" target="_blank" rel="noopener"
+            >Blog</a
+          >
           <span class="sep">•</span>
-          <a href="https://www.linkedin.com/company/boxfox1" target="_blank" rel="noopener">LinkedIn</a>
+          <a
+            href="https://www.linkedin.com/company/boxfox1"
+            target="_blank"
+            rel="noopener"
+            >LinkedIn</a
+          >
           <span class="sep">•</span>
           <a href="#top">Arriba</a>
         </div>
