@@ -37,18 +37,18 @@
     "format": "TXT",
     "featured": false,
     "isNew": true
+  },
+  {
+    "id": "checklist-nom-002-incendios",
+    "title": "Checklist NOM-002-STPS-2010 Prevención y combate de incendios",
+    "desc": "Lista de verificación rápida para cumplimiento de la NOM-002-STPS-2010 en centros de trabajo.",
+    "cat": "industrial",
+    "tier": "public",
+    "tags": ["nom-002", "incendios", "checklist", "stps"],
+    "updated": "2026-02-16",
+    "file": "/downloads/public/checklist-nom-002-prevencion-incendios-v1.txt",
+    "format": "TXT",
+    "featured": true,
+    "isNew": true
   }
 ]
-{
-  "id": "checklist-nom-002-incendios",
-  "title": "Checklist NOM-002-STPS-2010 Prevención y combate de incendios",
-  "desc": "Lista de verificación rápida para cumplimiento de la NOM-002-STPS-2010 en centros de trabajo.",
-  "cat": "industrial",
-  "tier": "public",
-  "tags": ["nom-002", "incendios", "checklist", "stps"],
-  "updated": "2026-02-16",
-  "file": "/downloads/public/checklist-nom-002-prevencion-incendios-v1.txt",
-  "format": "TXT",
-  "featured": true,
-  "isNew": true
-}
