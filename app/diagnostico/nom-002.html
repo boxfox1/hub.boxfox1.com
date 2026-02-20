@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="es-MX">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Diagnóstico NOM-002 | Hub Boxfox1</title>
+    <meta name="description" content="Calcula tu nivel de riesgo NOM-002 en 2 minutos. Obtén score, brechas y recursos recomendados." />
+    <meta name="robots" content="index,follow" />
+    <link rel="stylesheet" href="/assets/css/main.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#contenido">Saltar al contenido</a>
+
+    <header class="site-header" id="top">
+      <nav class="nav">
+        <div class="container nav-row">
+          <a class="brand" href="/">
+            <img class="brand-logo" src="/assets/img/boxfox1.logo.white.webp" alt="Boxfox1 Hub" width="210" height="48" />
+          </a>
+          <div class="nav-links" id="navLinks">
+            <a href="/recursos/">Biblioteca</a>
+            <a href="/descargas/">Descargas</a>
+            <a class="btn btn-sm btn-ghost" href="/#contacto">Contacto</a>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main id="contenido">
+      <section class="section">
+        <div class="container">
+          <div class="section-head">
+            <h2>Diagnóstico NOM-002</h2>
+            <p class="muted">Índice de Madurez Operativa Boxfox1™ — responde rápido y obtén recomendaciones.</p>
+          </div>
+
+          <div class="card" style="margin-top:16px;">
+            <div class="resource-top">
+              <span class="badge badge-registro">NOM-002</span>
+              <div class="muted" style="font-size:12px;">Tiempo estimado: 2–4 min</div>
+            </div>
+
+            <div id="formZone" style="margin-top:10px;"></div>
+
+            <div class="resource-actions" style="margin-top:14px;">
+              <button class="btn-line" id="btnCalc" type="button">📊 Calcular score</button>
+              <a class="btn-line" href="/app/diagnostico/" rel="noopener">← Volver</a>
+            </div>
+
+            <div id="resultZone" style="margin-top:16px; display:none;"></div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      (function () {
+        "use strict";
+
+        const ORIGIN = "hub.boxfox1.com";
+        const WHATS_BASE = "https://wa.me/524444989198";
+
+        const qs = new URLSearchParams(location.search);
+        const utm = {
+          source: qs.get("utm_source") || "hub",
+          medium: qs.get("utm_medium") || "app",
+          campaign: qs.get("utm_campaign") || "diagnostico_nom002"
+        };
+
+        const DIAG_URL = "/assets/data/diagnostics.json?v=" + Date.now();
+        const NOM_KEY = "NOM-002";
+
+        const el = (id) => document.getElementById(id);
+
+        const normalize = (s) => (s || "").toString().trim();
+        const esc = (s) => normalize(s).replace(/[&<>"']/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;" }[c]));
+
+        const buildWhatsUrl = (text) => `${WHATS_BASE}?text=${encodeURIComponent(text)}`;
+
+        // Simple event wrapper (GA4 if exists)
+        const track = (name, params) => {
+          try {
+            if (typeof gtag === "function") gtag("event", name, params || {});
+          } catch (_) {}
+        };
+
+        function renderQuestions(bank) {
+          const zone = el("formZone");
+          const qs = bank.questions;
+
+          const html = qs.map((q, idx) => {
+            return `
+              <div style="margin:12px 0; padding-top:12px; border-top:1px solid rgba(255,255,255,0.08);">
+                <div style="font-weight:700; margin-bottom:8px;">
+                  ${idx + 1}. ${esc(q.text)}
+                  <span class="muted" style="font-weight:400; font-size:12px;">(peso ${q.weight})</span>
+                </div>
+
+                <div class="pill-row" role="radiogroup" aria-label="Respuesta">
+                  <label class="pill" style="display:inline-flex; gap:8px; align-items:center;">
+                    <input type="radio" name="${esc(q.id)}" value="yes" /> Sí
+                  </label>
+                  <label class="pill" style="display:inline-flex; gap:8px; align-items:center;">
+                    <input type="radio" name="${esc(q.id)}" value="partial" /> Parcial
+                  </label>
+                  <label class="pill" style="display:inline-flex; gap:8px; align-items:center;">
+                    <input type="radio" name="${esc(q.id)}" value="no" /> No
+                  </label>
+                </div>
+              </div>
+            `;
+          }).join("");
+
+          zone.innerHTML = html;
+        }
+
+        function getAnswers(bank) {
+          const map = {};
+          for (const q of bank.questions) {
+            const checked = document.querySelector(`input[name="${q.id}"]:checked`);
+            map[q.id] = checked ? checked.value : "no";
+          }
+          return map;
+        }
+
+        function calcScore(bank, answers) {
+          const s = bank.scoring;
+          let max = 0;
+          let got = 0;
+
+          // compute weighted points
+          for (const q of bank.questions) {
+            max += q.weight * s.yes; // yes=2
+            const a = answers[q.id] || "no";
+            const pts = (a === "yes" ? s.yes : a === "partial" ? s.partial : s.no);
+            got += q.weight * pts;
+          }
+
+          const pct = max ? Math.round((got / max) * 100) : 0;
+
+          // band
+          const band = (s.bands || []).find(b => pct >= b.min && pct <= b.max) || s.bands[0];
+
+          // top gaps (highest weight where answer != yes)
+          const gaps = bank.questions
+            .filter(q => (answers[q.id] || "no") !== "yes")
+            .sort((a, b) => b.weight - a.weight)
+            .slice(0, 3);
+
+          return { pct, band, gaps };
+        }
+
+        function buildResult(bank, pct, band, gaps) {
+          const rz = el("resultZone");
+          const gapsHtml = gaps.length
+            ? `<ol class="list">${gaps.map(g => `<li><strong>${esc(g.text)}</strong> <span class="muted">(peso ${g.weight})</span></li>`).join("")}</ol>`
+            : `<p class="muted">Sin brechas críticas detectadas en este diagnóstico rápido.</p>`;
+
+          // Recommendations by band
+          let recTitle = "";
+          let recText = "";
+          let primaryCta = "";
+          let secondaryCta = "";
+
+          const commonUtm = `utm_source=${encodeURIComponent(utm.source)}&utm_medium=${encodeURIComponent(utm.medium)}&utm_campaign=${encodeURIComponent(utm.campaign)}`;
+
+          const serviceLink = `https://servicios.boxfox1.com/?${commonUtm}#nom-002`;
+          const resourcesLink = `/recursos/?cat=industrial&q=nom-002&${commonUtm}`;
+          const registroHome = `/downloads/registro/home.html?${commonUtm}`;
+
+          const whatsText =
+            `Hola Boxfox1, vengo de ${ORIGIN}. ` +
+            `Hice el diagnóstico NOM-002 y obtuve: ${pct}% (${band.label}). ` +
+            `¿Me apoyas con un diagnóstico técnico y plan de implementación? ` +
+            `Referencia: ${location.href}`;
+
+          const whatsUrl = buildWhatsUrl(whatsText);
+
+          if (band.key === "red") {
+            recTitle = "Acción recomendada";
+            recText = "Hay áreas críticas. Lo ideal es validar evidencia, brigadas, mantenimiento y control por áreas con un plan implementable.";
+            primaryCta = `<a class="btn-line" href="${esc(whatsUrl)}" target="_blank" rel="noopener">📲 Solicitar diagnóstico (WhatsApp)</a>`;
+            secondaryCta = `<a class="btn-line" href="${esc(registroHome)}">📥 Descargar checklist avanzado (Registro)</a>`;
+          } else if (band.key === "yellow") {
+            recTitle = "Siguiente paso";
+            recText = "Tienes avances, pero hay brechas que suelen generar observaciones si no hay evidencia y seguimiento.";
+            primaryCta = `<a class="btn-line" href="${esc(registroHome)}">📥 Checklist avanzado (Registro)</a>`;
+            secondaryCta = `<a class="btn-line" href="${esc(whatsUrl)}" target="_blank" rel="noopener">📲 Aclarar brechas (WhatsApp)</a>`;
+          } else {
+            recTitle = "Validación y mejora";
+            recText = "Buen avance. El siguiente salto es robustecer evidencia documental y disciplina operativa por área.";
+            primaryCta = `<a class="btn-line" href="${esc(registroHome)}">📥 Evidencia + formatos (Registro)</a>`;
+            secondaryCta = `<a class="btn-line" href="${esc(resourcesLink)}">📚 Ver recursos relacionados</a>`;
+          }
+
+          rz.innerHTML = `
+            <div style="border-top:1px solid rgba(255,255,255,0.08); padding-top:14px;">
+              <div class="resource-top">
+                <span class="badge ${band.key === "red" ? "badge-registro" : band.key === "yellow" ? "badge-clientes" : "badge-academy"}">
+                  ${esc(band.label)}
+                </span>
+                <div class="muted" style="font-size:12px;">Score: <strong style="color:rgba(255,255,255,0.9)">${pct}%</strong></div>
+              </div>
+
+              <h3 class="resource-title" style="margin-top:10px;">Brechas prioritarias (Top 3)</h3>
+              ${gapsHtml}
+
+              <div class="mini-note" style="margin-top:14px;">
+                Este diagnóstico es una <strong>autoevaluación inicial</strong>. No sustituye programas internos, procedimientos, evidencia documental ni validación técnica para cumplimiento.
+              </div>
+
+              <h3 class="resource-title" style="margin-top:14px;">${esc(recTitle)}</h3>
+              <p class="resource-desc">${esc(recText)}</p>
+
+              <div class="resource-actions">
+                ${primaryCta}
+                ${secondaryCta}
+                <a class="btn-line" href="${esc(serviceLink)}" target="_blank" rel="noopener">🏭 Ver servicios NOM-002</a>
+              </div>
+            </div>
+          `;
+
+          rz.style.display = "block";
+        }
+
+        async function init() {
+          track("diagnostic_start", { nom: NOM_KEY, origin: ORIGIN });
+
+          const res = await fetch(DIAG_URL, { cache: "no-store" });
+          const data = await res.json();
+          const bank = data[NOM_KEY];
+
+          renderQuestions(bank);
+
+          el("btnCalc").addEventListener("click", () => {
+            const answers = getAnswers(bank);
+            const out = calcScore(bank, answers);
+            buildResult(bank, out.pct, out.band, out.gaps);
+
+            track("diagnostic_complete", {
+              nom: NOM_KEY,
+              score: out.pct,
+              band: out.band.key,
+              origin: ORIGIN
+            });
+          });
+        }
+
+        init().catch((e) => {
+          console.error(e);
+          const zone = el("formZone");
+          zone.innerHTML = `<div class="card"><div class="resource-title">Error</div><p class="resource-desc">No se pudo cargar el banco de preguntas.</p></div>`;
+        });
+      })();
+    </script>
+
+    <script src="/assets/js/main.js" defer></script>
+  </body>
+</html>

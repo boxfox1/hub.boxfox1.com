@@ -1,0 +1,33 @@
+{
+  "NOM-002": {
+    "title": "NOM-002-STPS (Prevención y combate de incendios)",
+    "version": "v1",
+    "questions": [
+      { "id": "n2-01", "weight": 2, "text": "¿Cuentas con extintores visibles, señalizados y accesibles en áreas aplicables?" },
+      { "id": "n2-02", "weight": 2, "text": "¿Las rutas de evacuación están señalizadas y libres de obstrucciones?" },
+      { "id": "n2-03", "weight": 3, "text": "¿Existe un plan de atención a emergencias por incendio (documentado y difundido)?" },
+      { "id": "n2-04", "weight": 3, "text": "¿Tienes brigadas designadas (roles definidos) para emergencia por incendio?" },
+      { "id": "n2-05", "weight": 4, "text": "¿Hay evidencia documental de capacitación de brigadas (listas, temario, constancias)?" },
+      { "id": "n2-06", "weight": 4, "text": "¿Se realizan simulacros con evidencia (actas, resultados, mejoras)?" },
+      { "id": "n2-07", "weight": 4, "text": "¿Se tiene identificación y clasificación del riesgo de incendio por áreas (criterio documentado)?" },
+      { "id": "n2-08", "weight": 3, "text": "¿Cuentas con mantenimiento y verificación periódica de extintores (evidencia)?" },
+      { "id": "n2-09", "weight": 3, "text": "¿Existen procedimientos de control de fuentes de ignición (hot work, eléctricos, etc.)?" },
+      { "id": "n2-10", "weight": 4, "text": "¿Hay inspecciones internas programadas (checklists) y seguimiento a hallazgos?" },
+      { "id": "n2-11", "weight": 4, "text": "¿Se controla almacenamiento de materiales combustibles (orden, segregación, señalización)?" },
+      { "id": "n2-12", "weight": 3, "text": "¿El personal conoce puntos de reunión, alarmas y procedimiento de evacuación?" },
+      { "id": "n2-13", "weight": 4, "text": "¿Existe evidencia de revisión de instalaciones eléctricas/condiciones que puedan detonar incendio?" },
+      { "id": "n2-14", "weight": 5, "text": "¿Tienes evidencia documental suficiente para auditoría interna (carpeta NOM-002 por sitio/área)?" },
+      { "id": "n2-15", "weight": 5, "text": "¿Las medidas de prevención están integradas a tu operación (responsables, frecuencias, bitácoras)?" }
+    ],
+    "scoring": {
+      "yes": 2,
+      "partial": 1,
+      "no": 0,
+      "bands": [
+        { "min": 0, "max": 49, "label": "🔴 Riesgo alto", "key": "red" },
+        { "min": 50, "max": 74, "label": "🟡 Riesgo medio", "key": "yellow" },
+        { "min": 75, "max": 100, "label": "🟢 Base aceptable", "key": "green" }
+      ]
+    }
+  }
+}
