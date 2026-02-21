@@ -4,7 +4,10 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Diagnóstico NOM-002 | Hub Boxfox1</title>
-    <meta name="description" content="Calcula tu nivel de riesgo NOM-002 en 2 minutos. Obtén score, brechas y recursos recomendados." />
+    <meta
+      name="description"
+      content="Calcula tu nivel de riesgo NOM-002 en 2 minutos. Obtén score, brechas y recursos recomendados."
+    />
     <meta name="robots" content="index,follow" />
     <link rel="stylesheet" href="/assets/css/main.css" />
   </head>
@@ -15,7 +18,13 @@
       <nav class="nav">
         <div class="container nav-row">
           <a class="brand" href="/">
-            <img class="brand-logo" src="/assets/img/boxfox1.logo.white.webp" alt="Boxfox1 Hub" width="210" height="48" />
+            <img
+              class="brand-logo"
+              src="/assets/img/boxfox1.logo.white.webp"
+              alt="Boxfox1 Hub"
+              width="210"
+              height="48"
+            />
           </a>
           <div class="nav-links" id="navLinks">
             <a href="/recursos/">Biblioteca</a>
@@ -31,23 +40,32 @@
         <div class="container">
           <div class="section-head">
             <h2>Diagnóstico NOM-002</h2>
-            <p class="muted">Índice de Madurez Operativa Boxfox1™ — responde rápido y obtén recomendaciones.</p>
+            <p class="muted">
+              Índice de Madurez Operativa Boxfox1™ — responde rápido y obtén
+              recomendaciones.
+            </p>
           </div>
 
-          <div class="card" style="margin-top:16px;">
+          <div class="card" style="margin-top: 16px">
             <div class="resource-top">
               <span class="badge badge-registro">NOM-002</span>
-              <div class="muted" style="font-size:12px;">Tiempo estimado: 2–4 min</div>
+              <div class="muted" style="font-size: 12px">
+                Tiempo estimado: 2–4 min
+              </div>
             </div>
 
-            <div id="formZone" style="margin-top:10px;"></div>
+            <div id="formZone" style="margin-top: 10px"></div>
 
-            <div class="resource-actions" style="margin-top:14px;">
-              <button class="btn-line" id="btnCalc" type="button">📊 Calcular score</button>
-              <a class="btn-line" href="/app/diagnostico/" rel="noopener">← Volver</a>
+            <div class="resource-actions" style="margin-top: 14px">
+              <button class="btn-line" id="btnCalc" type="button">
+                📊 Calcular score
+              </button>
+              <a class="btn-line" href="/app/diagnostico/" rel="noopener"
+                >← Volver</a
+              >
             </div>
 
-            <div id="resultZone" style="margin-top:16px; display:none;"></div>
+            <div id="resultZone" style="margin-top: 16px; display: none"></div>
           </div>
         </div>
       </section>
@@ -64,7 +82,7 @@
         const utm = {
           source: qs.get("utm_source") || "hub",
           medium: qs.get("utm_medium") || "app",
-          campaign: qs.get("utm_campaign") || "diagnostico_nom002"
+          campaign: qs.get("utm_campaign") || "diagnostico_nom002",
         };
 
         const DIAG_URL = "/assets/data/diagnostics.json?v=" + Date.now();
@@ -73,9 +91,21 @@
         const el = (id) => document.getElementById(id);
 
         const normalize = (s) => (s || "").toString().trim();
-        const esc = (s) => normalize(s).replace(/[&<>"']/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;" }[c]));
+        const esc = (s) =>
+          normalize(s).replace(
+            /[&<>"']/g,
+            (c) =>
+              ({
+                "&": "&amp;",
+                "<": "&lt;",
+                ">": "&gt;",
+                '"': "&quot;",
+                "'": "&#39;",
+              })[c],
+          );
 
-        const buildWhatsUrl = (text) => `${WHATS_BASE}?text=${encodeURIComponent(text)}`;
+        const buildWhatsUrl = (text) =>
+          `${WHATS_BASE}?text=${encodeURIComponent(text)}`;
 
         // Simple event wrapper (GA4 if exists)
         const track = (name, params) => {
@@ -88,8 +118,9 @@
           const zone = el("formZone");
           const qs = bank.questions;
 
-          const html = qs.map((q, idx) => {
-            return `
+          const html = qs
+            .map((q, idx) => {
+              return `
               <div style="margin:12px 0; padding-top:12px; border-top:1px solid rgba(255,255,255,0.08);">
                 <div style="font-weight:700; margin-bottom:8px;">
                   ${idx + 1}. ${esc(q.text)}
@@ -109,7 +140,8 @@
                 </div>
               </div>
             `;
-          }).join("");
+            })
+            .join("");
 
           zone.innerHTML = html;
         }
@@ -117,7 +149,9 @@
         function getAnswers(bank) {
           const map = {};
           for (const q of bank.questions) {
-            const checked = document.querySelector(`input[name="${q.id}"]:checked`);
+            const checked = document.querySelector(
+              `input[name="${q.id}"]:checked`,
+            );
             map[q.id] = checked ? checked.value : "no";
           }
           return map;
@@ -132,18 +166,21 @@
           for (const q of bank.questions) {
             max += q.weight * s.yes; // yes=2
             const a = answers[q.id] || "no";
-            const pts = (a === "yes" ? s.yes : a === "partial" ? s.partial : s.no);
+            const pts =
+              a === "yes" ? s.yes : a === "partial" ? s.partial : s.no;
             got += q.weight * pts;
           }
 
           const pct = max ? Math.round((got / max) * 100) : 0;
 
           // band
-          const band = (s.bands || []).find(b => pct >= b.min && pct <= b.max) || s.bands[0];
+          const band =
+            (s.bands || []).find((b) => pct >= b.min && pct <= b.max) ||
+            s.bands[0];
 
           // top gaps (highest weight where answer != yes)
           const gaps = bank.questions
-            .filter(q => (answers[q.id] || "no") !== "yes")
+            .filter((q) => (answers[q.id] || "no") !== "yes")
             .sort((a, b) => b.weight - a.weight)
             .slice(0, 3);
 
@@ -153,7 +190,7 @@
         function buildResult(bank, pct, band, gaps) {
           const rz = el("resultZone");
           const gapsHtml = gaps.length
-            ? `<ol class="list">${gaps.map(g => `<li><strong>${esc(g.text)}</strong> <span class="muted">(peso ${g.weight})</span></li>`).join("")}</ol>`
+            ? `<ol class="list">${gaps.map((g) => `<li><strong>${esc(g.text)}</strong> <span class="muted">(peso ${g.weight})</span></li>`).join("")}</ol>`
             : `<p class="muted">Sin brechas críticas detectadas en este diagnóstico rápido.</p>`;
 
           // Recommendations by band
@@ -178,17 +215,20 @@
 
           if (band.key === "red") {
             recTitle = "Acción recomendada";
-            recText = "Hay áreas críticas. Lo ideal es validar evidencia, brigadas, mantenimiento y control por áreas con un plan implementable.";
+            recText =
+              "Hay áreas críticas. Lo ideal es validar evidencia, brigadas, mantenimiento y control por áreas con un plan implementable.";
             primaryCta = `<a class="btn-line" href="${esc(whatsUrl)}" target="_blank" rel="noopener">📲 Solicitar diagnóstico (WhatsApp)</a>`;
             secondaryCta = `<a class="btn-line" href="${esc(registroHome)}">📥 Descargar checklist avanzado (Registro)</a>`;
           } else if (band.key === "yellow") {
             recTitle = "Siguiente paso";
-            recText = "Tienes avances, pero hay brechas que suelen generar observaciones si no hay evidencia y seguimiento.";
+            recText =
+              "Tienes avances, pero hay brechas que suelen generar observaciones si no hay evidencia y seguimiento.";
             primaryCta = `<a class="btn-line" href="${esc(registroHome)}">📥 Checklist avanzado (Registro)</a>`;
             secondaryCta = `<a class="btn-line" href="${esc(whatsUrl)}" target="_blank" rel="noopener">📲 Aclarar brechas (WhatsApp)</a>`;
           } else {
             recTitle = "Validación y mejora";
-            recText = "Buen avance. El siguiente salto es robustecer evidencia documental y disciplina operativa por área.";
+            recText =
+              "Buen avance. El siguiente salto es robustecer evidencia documental y disciplina operativa por área.";
             primaryCta = `<a class="btn-line" href="${esc(registroHome)}">📥 Evidencia + formatos (Registro)</a>`;
             secondaryCta = `<a class="btn-line" href="${esc(resourcesLink)}">📚 Ver recursos relacionados</a>`;
           }
@@ -241,7 +281,7 @@
               nom: NOM_KEY,
               score: out.pct,
               band: out.band.key,
-              origin: ORIGIN
+              origin: ORIGIN,
             });
           });
         }

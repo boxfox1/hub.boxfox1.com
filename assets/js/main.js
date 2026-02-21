@@ -57,14 +57,16 @@
     // Close on outside click (only if open)
     document.addEventListener("click", (e) => {
       if (!links.classList.contains("is-open")) return;
-      const inside = e.target.closest("#navLinks") || e.target.closest("#navToggle");
+      const inside =
+        e.target.closest("#navLinks") || e.target.closest("#navToggle");
       if (!inside) closeNav();
     });
   }
 
   // Smooth scroll for in-page anchors (respect reduced motion)
   const reduceMotion =
-    window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    window.matchMedia &&
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   document.addEventListener("click", (e) => {
     const a = e.target.closest('a[href^="#"]');
@@ -82,37 +84,43 @@
   });
 
   // Contact link tracking: append utm_source=hub.boxfox1.com to WhatsApp, mailto and LinkedIn links
-  (function unifyContactLinks(){
-    const hubOrigin = 'hub.boxfox1.com';
-    const anchors = Array.from(document.querySelectorAll('a[href]'));
-    anchors.forEach(a=>{
-      const href = a.getAttribute('href');
-      if(!href) return;
+  (function unifyContactLinks() {
+    const hubOrigin = "hub.boxfox1.com";
+    const anchors = Array.from(document.querySelectorAll("a[href]"));
+    anchors.forEach((a) => {
+      const href = a.getAttribute("href");
+      if (!href) return;
 
       // mailto: add utm_source to subject/query
-      if(href.startsWith('mailto:')){
-        if(href.includes('?')) a.href = href + '&utm_source=' + encodeURIComponent(hubOrigin);
-        else a.href = href + '?utm_source=' + encodeURIComponent(hubOrigin);
+      if (href.startsWith("mailto:")) {
+        if (href.includes("?"))
+          a.href = href + "&utm_source=" + encodeURIComponent(hubOrigin);
+        else a.href = href + "?utm_source=" + encodeURIComponent(hubOrigin);
         return;
       }
 
-      try{
+      try {
         const url = new URL(href, location.href);
 
         // WhatsApp / wa.me
-        if(url.hostname.includes('wa.me') || url.hostname.includes('whatsapp.com')){
-          url.searchParams.set('utm_source', hubOrigin);
+        if (
+          url.hostname.includes("wa.me") ||
+          url.hostname.includes("whatsapp.com")
+        ) {
+          url.searchParams.set("utm_source", hubOrigin);
           a.href = url.toString();
           return;
         }
 
         // LinkedIn company/profile links
-        if(url.hostname.includes('linkedin.com')){
-          url.searchParams.set('utm_source', hubOrigin);
+        if (url.hostname.includes("linkedin.com")) {
+          url.searchParams.set("utm_source", hubOrigin);
           a.href = url.toString();
           return;
         }
-      }catch(e){ /* ignore non-URL hrefs */ }
+      } catch (e) {
+        /* ignore non-URL hrefs */
+      }
     });
   })();
 })();
