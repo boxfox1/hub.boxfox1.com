@@ -782,3 +782,26 @@ a.explore-link:hover{
     align-items:flex-start;
   }
 }
+.footer-social{
+  width:42px;
+  height:42px;
+
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+
+  border-radius:50%;
+  text-decoration:none;
+
+  color:#0f172a;
+  background:rgba(15,23,42,.04);
+  border:1px solid rgba(15,23,42,.12);
+
+  font-size:18px;
+  transition:.25s ease;
+}
+
+.footer-social:hover{
+  background:rgba(15,23,42,.08);
+  transform:translateY(-2px);
+}
