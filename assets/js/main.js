@@ -80,4 +80,39 @@
     const top = target.getBoundingClientRect().top + window.scrollY - 76;
     window.scrollTo({ top, behavior: reduceMotion ? "auto" : "smooth" });
   });
+
+  // Contact link tracking: append utm_source=hub.boxfox1.com to WhatsApp, mailto and LinkedIn links
+  (function unifyContactLinks(){
+    const hubOrigin = 'hub.boxfox1.com';
+    const anchors = Array.from(document.querySelectorAll('a[href]'));
+    anchors.forEach(a=>{
+      const href = a.getAttribute('href');
+      if(!href) return;
+
+      // mailto: add utm_source to subject/query
+      if(href.startsWith('mailto:')){
+        if(href.includes('?')) a.href = href + '&utm_source=' + encodeURIComponent(hubOrigin);
+        else a.href = href + '?utm_source=' + encodeURIComponent(hubOrigin);
+        return;
+      }
+
+      try{
+        const url = new URL(href, location.href);
+
+        // WhatsApp / wa.me
+        if(url.hostname.includes('wa.me') || url.hostname.includes('whatsapp.com')){
+          url.searchParams.set('utm_source', hubOrigin);
+          a.href = url.toString();
+          return;
+        }
+
+        // LinkedIn company/profile links
+        if(url.hostname.includes('linkedin.com')){
+          url.searchParams.set('utm_source', hubOrigin);
+          a.href = url.toString();
+          return;
+        }
+      }catch(e){ /* ignore non-URL hrefs */ }
+    });
+  })();
 })();
