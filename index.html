@@ -1,15 +1,18 @@
-<!-- /index.html -->
+<!-- /index.html  — HUB V3 (machote imprenta/maquinados) -->
 <!doctype html>
 <html lang="es-MX">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+
     <title>Hub Boxfox1 | Centro de Recursos Técnicos</title>
     <meta
       name="description"
       content="Hub Boxfox1: recursos técnicos, checklists, formatos y diagnósticos (NOM-STPS, brigadas y operación) listos para usar."
     />
     <meta name="robots" content="index,follow" />
+    <meta name="theme-color" content="#0b1220" />
+    <link rel="canonical" href="https://hub.boxfox1.com/" />
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
@@ -25,186 +28,240 @@
     <meta property="og:site_name" content="Boxfox1" />
 
     <link rel="icon" href="/favicon.ico" />
-    <link rel="stylesheet" href="/assets/css/main.css" />
+
+    <!-- Roboto -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap"
+    />
+
+    <!-- (Opcional) Icons si los sigues usando en otras páginas -->
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
     />
+
+    <link rel="stylesheet" href="/assets/css/main.css" />
   </head>
 
   <body>
-    <a class="skip-link" href="#contenido">Saltar al contenido</a>
+    <a class="skip" href="#principal">Saltar al contenido</a>
 
-    <header class="site-header" id="top">
-      <nav class="nav" aria-label="Navegación principal">
-        <div class="wrap nav-row">
-          <a class="brand" href="/" aria-label="Inicio Hub Boxfox1">
-            <img
-              class="brand-logo"
-              src="/assets/img/boxfox1.logo.white.webp"
-              alt="Boxfox1 Hub"
-              width="210"
-              height="48"
-              loading="eager"
-              decoding="async"
-            />
-          </a>
+    <!-- Tira superior -->
+    <div class="tira" role="note" aria-label="Identidad y alcance">
+      <div class="wrap tira__inner">
+        <span class="chip">Industry Standard</span>
+        <span class="sep" aria-hidden="true">·</span>
+        <span class="muted">Hub</span>
+        <span class="sep" aria-hidden="true">·</span>
+        <span class="muted">Recursos · Diagnósticos · Formatos</span>
+        <span class="sep" aria-hidden="true">·</span>
+        <span class="muted">NOM-STPS + Operación</span>
 
-          <button
-            class="nav-toggle"
-            id="navToggle"
-            type="button"
-            aria-expanded="false"
-            aria-controls="navLinks"
-          >
-            <span class="nav-toggle__icon" aria-hidden="true"></span>
-            <span class="sr-only">Abrir menú</span>
-          </button>
+        <a
+          class="nav__link nav__link--soft tira__cta"
+          target="_blank"
+          rel="noopener"
+          href="https://clientes.boxfox1.com"
+        >
+          Clientes
+        </a>
+      </div>
+    </div>
 
-          <div class="nav-links" id="navLinks">
-            <a href="#recursos">Recursos</a>
-            <a href="#diagnosticos">Diagnósticos</a>
-            <a href="#accesos">Accesos</a>
+    <!-- Cabecera -->
+    <header class="cabecera" data-cabecera>
+      <div class="wrap cabecera__inner">
+        <a class="marca" href="#inicio" aria-label="Ir al inicio">
+          <img
+            class="marca__logo"
+            src="/assets/img/boxfox1.logo.white.webp"
+            alt="Boxfox1"
+            width="250"
+            height="40"
+            loading="eager"
+            decoding="async"
+          />
+          <span class="marca__tag">Hub</span>
+        </a>
+
+        <nav class="nav" aria-label="Navegación principal">
+          <a class="nav__link is-active" href="#inicio">Inicio</a>
+          <a class="nav__link" href="#recursos">Recursos</a>
+          <a class="nav__link" href="#diagnosticos">Diagnósticos</a>
+          <a class="nav__link" href="#accesos">Accesos</a>
+          <a class="nav__link" href="#contacto">Contacto</a>
+        </nav>
+
+        <button
+          class="navbtn"
+          type="button"
+          aria-label="Abrir menú"
+          aria-expanded="false"
+          data-navbtn
+        >
+          <span class="navbtn__line" aria-hidden="true"></span>
+          <span class="navbtn__line" aria-hidden="true"></span>
+          <span class="navbtn__line" aria-hidden="true"></span>
+        </button>
+      </div>
+
+      <!-- Panel móvil -->
+      <div class="panel" data-panel aria-hidden="true">
+        <div class="wrap panel__inner">
+          <a class="panel__link is-active" href="#inicio">Inicio</a>
+          <a class="panel__link" href="#recursos">Recursos</a>
+          <a class="panel__link" href="#diagnosticos">Diagnósticos</a>
+          <a class="panel__link" href="#accesos">Accesos</a>
+          <a class="panel__link" href="#contacto">Contacto</a>
+
+          <div class="panel__meta">
+            <div class="panel__metaTitle">Contacto directo</div>
 
             <a
-              class="btn btn-sm btn-whats"
-              target="_blank"
-              rel="noopener noreferrer"
-              href="https://wa.me/524444989198?text=Hola%20Boxfox1%2C%20vengo%20de%20hub.boxfox1.com%20y%20quiero%20ayuda%20con%20recursos%20y%20cumplimiento%20NOM-STPS."
+              class="panel__metaLink"
+              href="mailto:info@boxfox1.com?subject=Hub%20Boxfox1%20|%20Recursos%20y%20cumplimiento&body=Origen%3A%20hub.boxfox1.com%0A%0AHola%20Boxfox1%2C%20necesito%20ayuda%20con%20recursos%20y%20cumplimiento%20NOM-STPS.%0A%0ATema%3A%0AIndustria%2FPlanta%3A%0AUbicaci%C3%B3n%3A%0A"
+              >info@boxfox1.com</a
             >
-              WhatsApp
-            </a>
+
+            <a
+              class="panel__metaLink"
+              target="_blank"
+              rel="noopener"
+              href="https://www.linkedin.com/company/boxfox1industry"
+              >LinkedIn Boxfox1Industry</a
+            >
           </div>
         </div>
-      </nav>
+      </div>
     </header>
 
-    <main id="contenido">
+    <main id="principal">
       <!-- HERO -->
       <section
-        class="section section--hero"
+        id="inicio"
+        class="hero hero--light"
         aria-label="Centro de Recursos Técnicos"
       >
-        <div class="wrap">
-          <div class="hero">
-            <div class="hero-copy">
-              <p class="eyebrow">Hub Boxfox1</p>
-              <h1>Centro de Recursos Técnicos</h1>
-              <p class="lead">
-                Recursos prácticos para cumplir NOM-STPS más rápido: checklists
-                listos para usar, diagnósticos operativos y formatos aplicables
-                en piso.
-              </p>
+        <div class="wrap hero__grid">
+          <div class="heroCopy">
+            <h1 class="h1">Centro de <br/>Recursos Técnicos</h1>
 
-              <p class="hero-note">
-                Pensado para responsables de seguridad, operaciones y
-                cumplimiento industrial.
-              </p>
-              <div
-                class="hero-actions"
-                role="group"
-                aria-label="Acciones principales"
-              >
-                <!-- Primario: diagnóstico -->
-                <a class="btn" href="#diagnosticos">Hacer diagnóstico</a>
-                <!-- Secundario: biblioteca -->
-                <a class="btn btn-ghost" href="#recursos">Ver recursos</a>
-              </div>
+            <p class="lead">
+              Recursos prácticos para cumplir NOM-STPS más rápido:
+              <strong>checklists</strong> listos para usar,
+              <strong>diagnósticos</strong> operativos y
+              <strong>formatos</strong> aplicables en piso.
+            </p>
+                        <p class="p" style="margin-top: 14px; max-width: 78ch">
+              Pensado para uso de responsables de seguridad, operaciones y cumplimiento
+              industrial. Su hay algo más que necesite puede ponerse en contacto con nosotros, con gusto lo atendemos.
+            </p>
+
+            <div class="heroKicker">
+              NOM-STPS · Brigadas · Operación · Evidencia
             </div>
 
-<aside class="card card--solid hero-pack" aria-label="Starter Pack">
-  <div class="card-top">
-    <span class="badge badge-registro">Gratis · Starter Pack</span>
-    <div class="muted small">Útil en 3 minutos</div>
-  </div>
+            <div class="hero__actions">
+              <a class="btn btn--cta" href="#diagnosticos">Hacer diagnóstico</a>
+              <a class="btn btn--sec" href="#recursos">Ver recursos</a>
+            </div>
 
-  <div class="pack" role="list">
-    <a class="pack-item" href="/app/diagnostico/nom-002.html" role="listitem">
-      <div class="pack-kicker">Diagnóstico</div>
-      <div class="pack-title">NOM-002 (Incendio)</div>
-      <div class="pack-sub">Score + brechas + próximos pasos</div>
-    </a>
-
-    <a class="pack-item" href="/downloads/" role="listitem">
-      <div class="pack-kicker">Descarga</div>
-      <div class="pack-title">Checklist express NOM-002</div>
-      <div class="pack-sub">Lista rápida para evidencia</div>
-    </a>
-
-    <a class="pack-item" href="/downloads/" role="listitem">
-      <div class="pack-kicker">Formato</div>
-      <div class="pack-title">Bitácora de extintores</div>
-      <div class="pack-sub">Inspección y control mensual</div>
-    </a>
-  </div>
-
-  <div class="card-actions" aria-label="Acciones rápidas">
-    <a class="btn btn-sm" href="/app/diagnostico/nom-002.html">Iniciar NOM-002</a>
-    <a class="btn btn-ghost btn-sm" href="#recursos">Ver biblioteca</a>
-  </div>
-</aside>
           </div>
+
+          <aside class="heroAside" aria-label="Starter Pack">
+            <div class="infoCard">
+              <div class="infoCard__k">Gratis · Starter Pack</div>
+
+              <div class="pack" role="list">
+                <a
+                  class="pack__item"
+                  href="/app/diagnostico/nom-002.html"
+                  role="listitem"
+                >
+                  <div class="pack__kicker">Diagnóstico</div>
+                  <div class="pack__title">NOM-002 (Incendio)</div>
+                  <div class="pack__sub">Score + brechas + próximos pasos</div>
+                </a>
+
+                <a class="pack__item" href="/downloads/" role="listitem">
+                  <div class="pack__kicker">Descarga</div>
+                  <div class="pack__title">Checklist express NOM-002</div>
+                  <div class="pack__sub">Lista rápida para evidencia</div>
+                </a>
+
+                <a class="pack__item" href="/downloads/" role="listitem">
+                  <div class="pack__kicker">Formato</div>
+                  <div class="pack__title">Bitácora de extintores</div>
+                  <div class="pack__sub">Inspección y control mensual</div>
+                </a>
+              </div>
+
+              <div class="infoCard__actions">
+                <a class="btn btn--cta" href="/app/diagnostico/nom-002.html"
+                  >Iniciar NOM-002</a
+                >
+                <a class="microcta" href="#recursos">Ver biblioteca →</a>
+              </div>
+
+              <div class="infoCard__meta">
+                <div><strong>Origen:</strong> hub.boxfox1.com</div>
+              </div>
+            </div>
+          </aside>
         </div>
       </section>
 
       <!-- RECURSOS -->
-      <section class="section" id="recursos" aria-label="Recursos">
+      <section
+        id="recursos"
+        class="seccion seccion--banda"
+        aria-label="Recursos"
+      >
         <div class="wrap">
-          <div class="section-head">
-            <h2>Recursos</h2>
-            <p class="muted">
-              Biblioteca por tema. Diseñado para lectura rápida y ejecución en
-              piso.
-            </p>
-          </div>
+          <header class="seccion__head">
+            <div class="label">RECURSOS</div>
+            <h2 class="h2 h2--line">Biblioteca por tema</h2>
+            <p class="p">Diseñado para lectura rápida y ejecución en piso.</p>
+          </header>
 
-          <div class="grid grid-3" style="margin-top: 16px">
-            <article class="tile" aria-label="NOM-STPS">
-              <div class="tile-ico" aria-hidden="true">📘</div>
-              <div class="tile-title">NOM-STPS</div>
-              <div class="tile-desc">
-                Checklists, formatos, evidencia y guías.
-              </div>
-              <a class="explore-link" href="#recursos">Explorar →</a>
+          <div class="cards4">
+            <article class="card">
+              <h3 class="h3">NOM-STPS</h3>
+              <p class="p">Checklists, formatos, evidencia y guías.</p>
+              <a class="microcta" href="/downloads/">Explorar →</a>
             </article>
 
-            <article class="tile" aria-label="Brigadas">
-              <div class="tile-ico" aria-hidden="true">🧯</div>
-              <div class="tile-title">Brigadas</div>
-              <div class="tile-desc">
-                Organización, roles, bitácoras, simulacros.
-              </div>
-              <a class="explore-link" href="#recursos">Explorar →</a>
+            <article class="card">
+              <h3 class="h3">Brigadas</h3>
+              <p class="p">Organización, roles, bitácoras, simulacros.</p>
+              <a class="microcta" href="/downloads/">Explorar →</a>
             </article>
 
-            <article class="tile" aria-label="Operación">
-              <div class="tile-ico" aria-hidden="true">⚙️</div>
-              <div class="tile-title">Operación</div>
-              <div class="tile-desc">
-                Rutinas, inspección, control por áreas.
-              </div>
-              <a class="explore-link" href="#recursos">Explorar →</a>
+            <article class="card">
+              <h3 class="h3">Operación</h3>
+              <p class="p">Rutinas, inspección, control por áreas.</p>
+              <a class="microcta" href="/downloads/">Explorar →</a>
             </article>
 
-            <article class="tile" aria-label="Capacitación">
-              <div class="tile-ico" aria-hidden="true">🎓</div>
-              <div class="tile-title">Capacitación</div>
-              <div class="tile-desc">Material de apoyo y guías de curso.</div>
-              <a class="explore-link" href="#recursos">Explorar →</a>
+            <article class="card">
+              <h3 class="h3">Capacitación</h3>
+              <p class="p">Material de apoyo y guías de curso.</p>
+              <a class="microcta" href="/downloads/">Explorar →</a>
             </article>
 
-            <article class="tile" aria-label="Formatos">
-              <div class="tile-ico" aria-hidden="true">🧾</div>
-              <div class="tile-title">Formatos</div>
-              <div class="tile-desc">Plantillas listas para personalizar.</div>
-              <a class="explore-link" href="#recursos">Explorar →</a>
+            <article class="card">
+              <h3 class="h3">Formatos</h3>
+              <p class="p">Plantillas listas para personalizar.</p>
+              <a class="microcta" href="/downloads/">Explorar →</a>
             </article>
 
-            <article class="tile" aria-label="Inspecciones">
-              <div class="tile-ico" aria-hidden="true">✅</div>
-              <div class="tile-title">Inspecciones</div>
-              <div class="tile-desc">Prevención, evidencia, seguimiento.</div>
-              <a class="explore-link" href="#recursos">Explorar →</a>
+            <article class="card">
+              <h3 class="h3">Inspecciones</h3>
+              <p class="p">Prevención, evidencia, seguimiento.</p>
+              <a class="microcta" href="/downloads/">Explorar →</a>
             </article>
           </div>
         </div>
@@ -212,53 +269,44 @@
 
       <!-- DIAGNÓSTICOS -->
       <section
-        class="section"
         id="diagnosticos"
+        class="seccion"
         aria-label="Diagnósticos rápidos"
       >
         <div class="wrap">
-          <div class="section-head">
-            <h2>Diagnósticos rápidos</h2>
-            <p class="muted">
-              Autoevaluaciones de 2–4 minutos. Obtén score, brechas y siguientes
+          <header class="seccion__head">
+            <div class="label">DIAGNÓSTICOS</div>
+            <h2 class="h2 h2--line">Diagnósticos rápidos</h2>
+            <p class="p">
+              Autoevaluaciones de 2–4 minutos: score, brechas y siguientes
               pasos.
             </p>
-          </div>
+          </header>
 
-          <div class="grid grid-2" style="margin-top: 16px">
-            <article class="card card--solid" aria-label="Diagnóstico NOM-002">
-              <div class="card-top">
-                <span class="badge badge-registro">NOM-002</span>
-                <div class="muted small">Incendio y brigadas</div>
-              </div>
-              <div class="card-title">Diagnóstico NOM-002</div>
-              <p class="card-desc">
+          <div class="cards3" style="grid-template-columns: repeat(2, 1fr)">
+            <article class="card">
+              <h3 class="h3">Diagnóstico NOM-002</h3>
+              <p class="p">
                 Evalúa madurez operativa: evidencia, brigadas, mantenimiento y
                 control por área.
               </p>
-              <div class="card-actions">
-                <a class="btn btn-sm" href="/app/diagnostico/nom-002.html"
+              <div class="rowActions">
+                <a class="btn btn--cta" href="/app/diagnostico/nom-002.html"
                   >Iniciar</a
                 >
-                <a class="btn btn-sm btn-ghost" href="#recursos"
-                  >Ver recursos</a
-                >
+                <a class="btn btn--sec" href="/downloads/">Ver recursos</a>
               </div>
             </article>
 
-            <article class="card card--soft" aria-label="Más diagnósticos">
-              <div class="card-top">
-                <span class="badge badge-academy">Próximamente</span>
-                <div class="muted small">Ruta de ampliación</div>
-              </div>
-              <div class="card-title">Más diagnósticos</div>
-              <p class="card-desc">
-                NOM-001, NOM-004, NOM-005 y brigadas (SIC / SCI). Mantendremos
-                el mismo formato: breve y accionable.
+            <article class="card card--flat">
+              <h3 class="h3">Más diagnósticos</h3>
+              <p class="p">
+                NOM-001, NOM-004, NOM-005 y brigadas (SIC/SCI). Mismo formato:
+                breve y accionable.
               </p>
-              <div class="card-actions">
-                <a class="btn btn-sm btn-ghost" href="#accesos">Ver índice</a>
-                <a class="btn btn-sm btn-line" href="#contacto">Pedir uno</a>
+              <div class="rowActions">
+                <a class="btn btn--sec" href="#accesos">Ver índice</a>
+                <a class="btn btn--sec" href="#contacto">Pedir uno</a>
               </div>
             </article>
           </div>
@@ -272,250 +320,313 @@
       </section>
 
       <!-- ACCESOS -->
-      <section class="section" id="accesos" aria-label="Accesos">
+      <section id="accesos" class="seccion seccion--banda" aria-label="Accesos">
         <div class="wrap">
-          <div class="section-head">
-            <h2>Accesos</h2>
-            <p class="muted">Un mismo Hub, distintos niveles de profundidad.</p>
-          </div>
+          <header class="seccion__head">
+            <div class="label">ACCESOS</div>
+            <h2 class="h2 h2--line">Niveles de acceso</h2>
+            <p class="p">Un mismo Hub, distintos niveles de profundidad.</p>
+          </header>
 
-          <div class="grid grid-4" style="margin-top: 16px">
-            <article class="tile" aria-label="Público">
-              <div class="card-top">
-                <span class="badge">Público</span>
-                <div class="muted small">Gratis</div>
-              </div>
-              <div class="tile-title">Biblioteca base</div>
-              <div class="tile-desc">
+          <div class="cards4">
+            <article class="card">
+              <h3 class="h3">Público</h3>
+              <p class="p">
                 Guías intro, recursos de consulta y links esenciales.
-              </div>
-              <a class="explore-link" href="#recursos">Entrar →</a>
+              </p>
+              <a class="microcta" href="/downloads/public/">Entrar →</a>
             </article>
 
-            <article class="tile" aria-label="Registro">
-              <div class="card-top">
-                <span class="badge badge-registro">Registro</span>
-                <div class="muted small">Lead magnet</div>
-              </div>
-              <div class="tile-title">Formatos avanzados</div>
-              <div class="tile-desc">
+            <article class="card">
+              <h3 class="h3">Registro</h3>
+              <p class="p">
                 Checklists y plantillas listas para adaptar por empresa.
-              </div>
-              <a class="explore-link" href="#recursos">Entrar →</a>
+              </p>
+              <a class="microcta" href="/downloads/registro/">Entrar →</a>
             </article>
 
-            <article class="tile" aria-label="Clientes">
-              <div class="card-top">
-                <span class="badge badge-clientes">Clientes</span>
-                <div class="muted small">Implementación</div>
-              </div>
-              <div class="tile-title">Paquetes de evidencia</div>
-              <div class="tile-desc">
+            <article class="card">
+              <h3 class="h3">Clientes</h3>
+              <p class="p">
                 Carpetas, rutinas y control para sostener cumplimiento.
-              </div>
-              <a class="explore-link" href="#recursos">Entrar →</a>
+              </p>
+              <a class="microcta" href="/downloads/clientes/">Entrar →</a>
             </article>
 
-            <article class="tile" aria-label="Academy">
-              <div class="card-top">
-                <span class="badge badge-academy">Academy</span>
-                <div class="muted small">Formación</div>
-              </div>
-              <div class="tile-title">Capacitación guiada</div>
-              <div class="tile-desc">
+            <article class="card">
+              <h3 class="h3">Academy</h3>
+              <p class="p">
                 Curso + evidencia + evaluación + DC-3 (según programa).
-              </div>
-              <a class="explore-link" href="#recursos">Ir →</a>
+              </p>
+              <a class="microcta" href="/downloads/academy/">Ir →</a>
             </article>
           </div>
         </div>
       </section>
 
       <!-- CONTACTO -->
-      <section class="section" id="contacto" aria-label="Contacto">
+      <section
+        id="contacto"
+        class="seccion seccion--mando seccion--bottom"
+        aria-label="Contacto"
+      >
         <div class="wrap">
+          <header class="seccion__head">
+            <div class="label">CONTACTO</div>
+            <h2 class="h2 h2--line">Contacto</h2>
+            <p class="p">
+              Si necesitas diagnóstico técnico, plan de implementación o
+              paquetes de evidencia para NOM-STPS, escríbenos.
+            </p>
+          </header>
+
           <div class="contact">
-            <div>
-              <div class="section-head">
-                <h2>Contacto</h2>
-                <p class="muted">
-                  Si necesitas diagnóstico técnico, plan de implementación o
-                  paquetes de evidencia para NOM-STPS, escríbenos.
-                </p>
-              </div>
+            <div class="contactCard">
+              <div class="contactCard__title">Contacto directo</div>
 
-              <div class="contact-actions">
-                <div class="d-flex gap-3 flex-wrap">
-                  <a
-                    class="footer-social"
-                    href="https://www.youtube.com/@Boxfox1industry"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="YouTube"
-                  >
-                    <i class="bi bi-youtube"></i>
-                  </a>
-
-                  <a
-                    class="footer-social"
-                    href="https://open.spotify.com/show/6O8W2euH2owYs06F3bGgIo"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="Spotify"
-                  >
-                    <i class="bi bi-spotify"></i>
-                  </a>
-
-                  <a
-                    class="footer-social"
-                    href="https://www.facebook.com/boxfox1industria/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="Facebook"
-                  >
-                    <i class="bi bi-facebook"></i>
-                  </a>
-
-                  <a
-                    class="footer-social"
-                    href="https://x.com/Boxfox1industry"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="X (Twitter)"
-                  >
-                    <i class="bi bi-twitter-x"></i>
-                  </a>
-
-                  <a
-                    class="footer-social"
-                    href="https://www.instagram.com/boxfox1.industry/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="Instagram"
-                  >
-                    <i class="bi bi-instagram"></i>
-                  </a>
-
-                  <a
-                    class="footer-social"
-                    href="https://www.pinterest.com/boxfox1/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="Pinterest"
-                  >
-                    <i class="bi bi-pinterest"></i>
-                  </a>
-
-                  <a
-                    class="footer-social"
-                    href="https://www.linkedin.com/company/boxfox1industry/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="LinkedIn"
-                  >
-                    <i class="bi bi-linkedin"></i>
-                  </a>
-
-                  <a
-                    class="footer-social"
-                    href="https://wa.me/524444989198?text=Hola%20Boxfox1%2C%20vengo%20desde%20hub.boxfox1.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="WhatsApp"
-                  >
-                    <i class="bi bi-whatsapp"></i>
-                  </a>
-
-                  <a
-                    class="footer-social"
-                    href="mailto:info@boxfox1.com?subject=Contacto%20desde%20Hub%20Boxfox1"
-                    aria-label="Email"
-                  >
-                    <i class="bi bi-envelope-fill"></i>
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            <aside class="card card--solid" aria-label="Datos">
-              <div class="card-top">
-                <span class="badge">Atención</span>
-                <div class="muted small">México</div>
-              </div>
-              <ul class="list" style="margin-top: 8px">
+              <ul class="list list--tight">
                 <li>
                   <strong>WhatsApp:</strong>
                   <a
-                    href="https://wa.me/524444989198?text=Hola%20Boxfox1%2C%20vengo%20desde%20hub.boxfox1.com"
+                    class="link"
                     target="_blank"
-                    rel="noopener noreferrer"
+                    rel="noopener"
+                    href="https://wa.me/524444989198?text=Hola%20Boxfox1%2C%20vengo%20de%20hub.boxfox1.com%20y%20quiero%20ayuda%20con%20recursos%20y%20cumplimiento%20NOM-STPS."
+                    >444 498 9198</a
                   >
-                    444 498 9198
-                  </a>
                 </li>
-
                 <li>
                   <strong>Email:</strong>
                   <a
-                    href="mailto:info@boxfox1.com?subject=Contacto%20desde%20Hub%20Boxfox1"
+                    class="link"
+                    href="mailto:info@boxfox1.com?subject=Contacto%20desde%20Hub%20Boxfox1&body=Origen%3A%20hub.boxfox1.com%0A%0AHola%20Boxfox1%2C%20necesito%20ayuda%20con%20recursos%20y%20cumplimiento%20NOM-STPS.%0A%0ATema%3A%0AIndustria%2FPlanta%3A%0AUbicaci%C3%B3n%3A%0A"
+                    >info@boxfox1.com</a
                   >
-                    info@boxfox1.com
-                  </a>
+                </li>
+                <li>
+                  <strong>LinkedIn:</strong>
+                  <a
+                    class="link"
+                    target="_blank"
+                    rel="noopener"
+                    href="https://www.linkedin.com/company/boxfox1industry"
+                    >Boxfox1Industry</a
+                  >
                 </li>
                 <li><strong>Origen:</strong> hub.boxfox1.com</li>
               </ul>
-              <div class="mini-note">
+
+              <p class="mutedMini">
                 Respuesta rápida. Si ya hiciste un diagnóstico, pega el enlace
                 del resultado en tu mensaje.
-              </div>
-            </aside>
+              </p>
+            </div>
+
+            <div class="contactCard contactCard--soft">
+              <div class="contactCard__title">Ecosistema</div>
+
+              <ul class="list list--tight">
+                <li>
+                  <a
+                    class="link"
+                    target="_blank"
+                    rel="noopener"
+                    href="https://blog.boxfox1.com/"
+                    >blog.boxfox1.com</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="link"
+                    target="_blank"
+                    rel="noopener"
+                    href="https://clientes.boxfox1.com/"
+                    >clientes.boxfox1.com</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="link"
+                    target="_blank"
+                    rel="noopener"
+                    href="https://servicios.boxfox1.com/"
+                    >servicios.boxfox1.com</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="link"
+                    target="_blank"
+                    rel="noopener"
+                    href="https://instituto.boxfox1.com/"
+                    >instituto.boxfox1.com</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="link"
+                    target="_blank"
+                    rel="noopener"
+                    href="https://capacitacion.boxfox1.com/"
+                    >capacitacion.boxfox1.com</a
+                  >
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
+
+        <!-- FOOTER V3 (una fila) -->
+<footer class="footer" role="contentinfo" aria-label="Pie de página">
+  <div class="wrap footer__inner footer__inner--oneLine">
+
+    <!-- IZQUIERDA -->
+    <div class="footer__left">
+            <a 
+        href="https://corporativo.boxfox1.com/" 
+        target="_blank" 
+        rel="noopener noreferrer"
+        class="footer-corp">
+        Corporativo Boxfox1 © <span id="year">2026</span>
+      </a></span>
+      <span class="sep">·</span>
+      <a href="/aviso-de-privacidad.html">Aviso de privacidad</a>
+    </div>
+
+    <!-- DERECHA (solo iconos) -->
+    <div class="footer__right footer__right--icons">
+
+      <a 
+        href="https://www.linkedin.com/company/boxfox1industry/" 
+        target="_blank" 
+        rel="noopener noreferrer"
+        aria-label="LinkedIn Boxfox1">
+        <i class="bi bi-linkedin"></i>
+      </a>
+
+      <a 
+        href="https://www.youtube.com/@Boxfox1industry" 
+        target="_blank" 
+        rel="noopener noreferrer"
+        aria-label="YouTube Boxfox1">
+        <i class="bi bi-youtube"></i>
+      </a>
+
+      <a 
+        href="https://open.spotify.com/show/6O8W2euH2owYs06F3bGgIo" 
+        target="_blank" 
+        rel="noopener noreferrer"
+        aria-label="Spotify Boxfox1">
+        <i class="bi bi-spotify"></i>
+      </a>
+
+      <a 
+        href="https://www.instagram.com/boxfox1.industry/" 
+        target="_blank" 
+        rel="noopener noreferrer"
+        aria-label="Instagram Boxfox1">
+        <i class="bi bi-instagram"></i>
+      </a>
+
+      <a 
+        href="https://wa.me/524444989198?text=Hola%20Boxfox1%2C%20vengo%20desde%20hub.boxfox1.com" 
+        target="_blank" 
+        rel="noopener noreferrer"
+        aria-label="WhatsApp Boxfox1">
+        <i class="bi bi-whatsapp"></i>
+      </a>
+
+      <a 
+        href="mailto:info@boxfox1.com?subject=Contacto%20desde%20Hub%20Boxfox1" 
+        aria-label="Email Boxfox1">
+        <i class="bi bi-envelope-fill"></i>
+      </a>
+
+    </div>
+  </div>
+</footer>
       </section>
+
+      <!-- WhatsApp FAB (estándar Boxfox1) -->
+      <a
+        class="wafab"
+        target="_blank"
+        rel="noopener"
+        href="https://wa.me/524444989198?text=Hola%20Boxfox1%2C%20vengo%20de%20hub.boxfox1.com%20y%20quiero%20ayuda%20con%20recursos%20y%20cumplimiento%20NOM-STPS."
+        aria-label="Contactar por WhatsApp"
+      >
+        <img
+          src="/assets/img/icons/whatsapp.svg"
+          alt="WhatsApp"
+          aria-hidden="true"
+        />
+      </a>
+
+      <!-- PRIVACIDAD MODAL (V3 estable) -->
+      <div
+        class="modal"
+        id="privacyModal"
+        role="dialog"
+        aria-modal="true"
+        aria-hidden="true"
+        aria-labelledby="privacyTitle"
+        aria-describedby="privacyDesc"
+      >
+        <div class="modal__backdrop" data-modal-close></div>
+
+        <div class="modal__panel" role="document">
+          <div class="modal__top">
+            <div class="modal__kicker">
+              <span class="kicker__dot" aria-hidden="true"></span>
+              AVISO DE PRIVACIDAD
+            </div>
+
+            <button
+              class="modal__x"
+              type="button"
+              aria-label="Cerrar"
+              data-modal-close
+            >
+              ×
+            </button>
+          </div>
+
+          <h2 class="h2" id="privacyTitle" style="margin-top: 8px">
+            Tratamiento de datos personales
+          </h2>
+
+          <p class="p" id="privacyDesc" style="margin-top: 6px">
+            La información proporcionada (nombre, empresa, correo, teléfono y
+            detalles) se utiliza exclusivamente para atender tu solicitud y dar
+            seguimiento comercial/operativo.
+            <br /><br />
+            No compartimos tus datos con terceros ajenos al servicio. Puedes
+            solicitar acceso, rectificación o eliminación escribiendo a
+            <a
+              class="link"
+              href="mailto:info@boxfox1.com?subject=Privacidad%20|%20Solicitud%20ARCO&body=Origen%3A%20hub.boxfox1.com%0A%0AHola%20Boxfox1%2C%20quiero%20ejercer%20mis%20derechos%20ARCO.%0A%0ANombre%3A%0ACorreo%3A%0ASolicitud%3A%0A"
+              >info@boxfox1.com</a
+            >.
+          </p>
+
+          <div class="modal__actions">
+            <button class="btn btn--cta" type="button" data-modal-close>
+              Entendido
+            </button>
+          </div>
+
+          <p class="muted" style="font-size: 12px; margin-top: 10px">
+            Origen: hub.boxfox1.com · Última actualización: 2026.
+          </p>
+        </div>
+      </div>
     </main>
 
-    <footer class="footer" role="contentinfo">
-      <div class="wrap footer-row">
-        <div class="footer-left">
-          Corporativo Boxfox1 © <span id="year">2026</span>
-        </div>
-
-        <nav class="footer-right" aria-label="Divisiones Boxfox1">
-          <a
-            href="https://blog.boxfox1.com/"
-            target="_blank"
-            rel="noopener noreferrer"
-            >Blog</a
-          >
-          <span class="sep">|</span>
-          <a
-            href="https://servicios.boxfox1.com/"
-            target="_blank"
-            rel="noopener noreferrer"
-            >Servicios Industriales</a
-          >
-          <span class="sep">|</span>
-          <a
-            href="https://instituto.boxfox1.com/"
-            target="_blank"
-            rel="noopener noreferrer"
-            >Servicios Comerciales</a
-          >
-          <span class="sep">|</span>
-          <a
-            href="https://capacitacion.boxfox1.com/"
-            target="_blank"
-            rel="noopener noreferrer"
-            >Capacitación</a
-          >
-        </nav>
-      </div>
-
-      <div class="wrap footer-sub">
-        <div class="footer-ctas" aria-label="Contacto directo"></div>
-      </div>
-    </footer>
-
     <script src="/assets/js/main.js" defer></script>
+
+    <!-- Si tu gating usa estos, actívalos aquí:
+    <script src="/assets/js/access-config.js" defer></script>
+    <script src="/assets/js/access.js" defer></script>
+    -->
   </body>
 </html>

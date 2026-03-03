@@ -1,126 +1,169 @@
-// /assets/js/main.js
-(function () {
+// /assets/js/main.js  — HUB V3 (machote imprenta/maquinados)
+(() => {
   "use strict";
 
-  const $ = (sel, root = document) => root.querySelector(sel);
+  const qs = (s, r = document) => r.querySelector(s);
+  const qsa = (s, r = document) => Array.from(r.querySelectorAll(s));
 
-  // Year
-  const y = $("#year");
-  if (y) y.textContent = String(new Date().getFullYear());
+  // Year (footer)
+  qsa("[data-year]").forEach((el) => (el.textContent = String(new Date().getFullYear())));
 
-  // Header shadow on scroll
-  const header = $(".site-header");
+  // Header shadow
+  const header = qs("[data-cabecera]");
   const syncHeader = () => {
     if (!header) return;
-    header.classList.toggle("is-scrolled", window.scrollY > 6);
+    header.classList.toggle("is-shadow", window.scrollY > 6);
   };
   window.addEventListener("scroll", syncHeader, { passive: true });
   syncHeader();
 
-  // Mobile nav
-  const toggle = $("#navToggle");
-  const links = $("#navLinks");
+  // Mobile panel
+  const btn = qs("[data-navbtn]");
+  const panel = qs("[data-panel]");
 
-  const closeNav = () => {
-    if (!toggle || !links) return;
-    links.classList.remove("is-open");
-    toggle.setAttribute("aria-expanded", "false");
+  const closePanel = () => {
+    if (!btn || !panel) return;
+    panel.classList.remove("is-open");
+    panel.setAttribute("aria-hidden", "true");
+    btn.setAttribute("aria-expanded", "false");
   };
 
-  const openNav = () => {
-    if (!toggle || !links) return;
-    links.classList.add("is-open");
-    toggle.setAttribute("aria-expanded", "true");
+  const openPanel = () => {
+    if (!btn || !panel) return;
+    panel.classList.add("is-open");
+    panel.setAttribute("aria-hidden", "false");
+    btn.setAttribute("aria-expanded", "true");
   };
 
-  const toggleNav = () => {
-    if (!toggle || !links) return;
-    const isOpen = links.classList.contains("is-open");
-    isOpen ? closeNav() : openNav();
+  const togglePanel = () => {
+    if (!btn || !panel) return;
+    panel.classList.contains("is-open") ? closePanel() : openPanel();
   };
 
-  if (toggle && links) {
-    toggle.addEventListener("click", toggleNav);
+  if (btn && panel) {
+    btn.addEventListener("click", togglePanel);
 
-    // Close when clicking a link (mobile)
-    links.addEventListener("click", (e) => {
+    // Close on link click
+    panel.addEventListener("click", (e) => {
       const a = e.target.closest("a");
       if (!a) return;
-      closeNav();
+      closePanel();
     });
 
-    // Close on Escape
+    // Close on escape
     document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") closeNav();
+      if (e.key === "Escape") closePanel();
     });
 
-    // Close on outside click (only if open)
+    // Close on outside click
     document.addEventListener("click", (e) => {
-      if (!links.classList.contains("is-open")) return;
-      const inside =
-        e.target.closest("#navLinks") || e.target.closest("#navToggle");
-      if (!inside) closeNav();
+      if (!panel.classList.contains("is-open")) return;
+      const inside = e.target.closest("[data-panel]") || e.target.closest("[data-navbtn]");
+      if (!inside) closePanel();
     });
   }
 
   // Smooth scroll for in-page anchors (respect reduced motion)
   const reduceMotion =
-    window.matchMedia &&
-    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  const scrollToId = (id) => {
+    const target = document.getElementById(id);
+    if (!target) return;
+
+    const top = target.getBoundingClientRect().top + window.scrollY - 76;
+    window.scrollTo({ top, behavior: reduceMotion ? "auto" : "smooth" });
+  };
 
   document.addEventListener("click", (e) => {
     const a = e.target.closest('a[href^="#"]');
     if (!a) return;
 
-    const id = a.getAttribute("href");
-    if (!id || id === "#") return;
+    const href = a.getAttribute("href");
+    if (!href || href === "#") return;
 
-    const target = document.getElementById(id.slice(1));
+    const id = href.slice(1);
+    if (!id) return;
+
+    const target = document.getElementById(id);
     if (!target) return;
 
     e.preventDefault();
-    const top = target.getBoundingClientRect().top + window.scrollY - 76;
-    window.scrollTo({ top, behavior: reduceMotion ? "auto" : "smooth" });
+    scrollToId(id);
   });
 
-  // Contact link tracking: append utm_source=hub.boxfox1.com to WhatsApp, mailto and LinkedIn links
-  (function unifyContactLinks() {
-    const hubOrigin = "hub.boxfox1.com";
-    const anchors = Array.from(document.querySelectorAll("a[href]"));
-    anchors.forEach((a) => {
-      const href = a.getAttribute("href");
-      if (!href) return;
+  // Active link sync (desktop + panel)
+  const navLinks = qsa('.nav__link[href^="#"]');
+  const panelLinks = qsa('.panel__link[href^="#"]');
+  const allLinks = [...navLinks, ...panelLinks];
 
-      // mailto: add utm_source to subject/query
-      if (href.startsWith("mailto:")) {
-        if (href.includes("?"))
-          a.href = href + "&utm_source=" + encodeURIComponent(hubOrigin);
-        else a.href = href + "?utm_source=" + encodeURIComponent(hubOrigin);
-        return;
-      }
-
-      try {
-        const url = new URL(href, location.href);
-
-        // WhatsApp / wa.me
-        if (
-          url.hostname.includes("wa.me") ||
-          url.hostname.includes("whatsapp.com")
-        ) {
-          url.searchParams.set("utm_source", hubOrigin);
-          a.href = url.toString();
-          return;
-        }
-
-        // LinkedIn company/profile links
-        if (url.hostname.includes("linkedin.com")) {
-          url.searchParams.set("utm_source", hubOrigin);
-          a.href = url.toString();
-          return;
-        }
-      } catch (e) {
-        /* ignore non-URL hrefs */
-      }
+  const setActive = (hash) => {
+    allLinks.forEach((a) => {
+      const isMatch = a.getAttribute("href") === hash;
+      a.classList.toggle("is-active", isMatch);
     });
-  })();
+  };
+
+  const sections = ["inicio", "recursos", "diagnosticos", "accesos", "contacto"]
+    .map((id) => document.getElementById(id))
+    .filter(Boolean);
+
+  const syncActiveOnScroll = () => {
+    if (!sections.length) return;
+
+    const y = window.scrollY + 110;
+    let current = sections[0].id;
+
+    for (const sec of sections) {
+      if (sec.offsetTop <= y) current = sec.id;
+    }
+    setActive("#" + current);
+  };
+
+  window.addEventListener("scroll", syncActiveOnScroll, { passive: true });
+  syncActiveOnScroll();
+
+  // Privacy modal (V3)
+  const modal = qs("#privacyModal");
+  const openers = qsa("[data-open-privacy]");
+  const closers = qsa("[data-modal-close]");
+
+  const openModal = () => {
+    if (!modal) return;
+    modal.classList.add("is-open");
+    modal.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+  };
+
+  const closeModal = () => {
+    if (!modal) return;
+    modal.classList.remove("is-open");
+    modal.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = "";
+  };
+
+  openers.forEach((b) =>
+    b.addEventListener("click", (e) => {
+      e.preventDefault();
+      openModal();
+    })
+  );
+  closers.forEach((b) =>
+    b.addEventListener("click", (e) => {
+      e.preventDefault();
+      closeModal();
+    })
+  );
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeModal();
+  });
+
+  // Prevent empty hash navigation for privacy links
+  qsa('a[href="#"]').forEach((a) => {
+    a.addEventListener("click", (e) => {
+      if (a.hasAttribute("data-open-privacy")) return;
+      e.preventDefault();
+    });
+  });
 })();
